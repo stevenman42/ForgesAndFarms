@@ -7,7 +7,8 @@ public class Assets {
 	private static final int width = 16, height = 16;
 	
 	public static BufferedImage grass, dirt, stone, tilledDirt, // tiles
-								woodWall, stoneWall;
+								woodWall, stoneWall,
+								player;
 	
 	
 	// loads in everything for the game
@@ -22,6 +23,8 @@ public class Assets {
 		
 		woodWall = sheet.crop(0, 16, width, height);
 		stoneWall = sheet.crop(16, 16, width, height);
+		
+		player = sheet.crop(0, 48, width, height);
 		
 	}
 
