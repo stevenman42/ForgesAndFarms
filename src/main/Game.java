@@ -1,12 +1,12 @@
 package main;
 
-import graphics.ImageLoader;
-import graphics.SpriteSheet;
+import graphics.Assets;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
+import main.states.GameState;
+import main.states.State;
 import display.Display;
 
 public class Game implements Runnable{
@@ -21,13 +21,10 @@ public class Game implements Runnable{
 	private BufferStrategy bs;
 	private Graphics g;
 	
-	private SpriteSheet sheet;
-	
-	// temp
-	
-	private BufferedImage testImage;
-	
-	// end temp
+	//States
+	private State gameState;
+	private State menuState;
+
 	
 	
 	
@@ -39,13 +36,18 @@ public class Game implements Runnable{
 	
 	private void init(){
 		display = new Display(title, width, height);
+		Assets.init();
 		
-		testImage = ImageLoader.loadImage("/textures/test.jpg");
-		sheet = new SpriteSheet(testImage);
+		gameState = new GameState();
+		menuState = new GameState();
+		State.setState(gameState);
+
 	}
-	
+
 	private void tick(){
-		
+		if (State.getState() != null){
+			State.getState().tick();
+		}
 	}
 	
 	private void render(){
@@ -58,8 +60,9 @@ public class Game implements Runnable{
 		g.clearRect(0, 0, width, height);
 		//Draw stuff
 		
-		g.drawImage(testImage, 10, 10, null);
-		g.drawImage(sheet.crop(10, 10, 40, 40), 30, 30, null);
+		if (State.getState() != null){
+			State.getState().render(g);
+		}
 		
 		
 		
@@ -71,9 +74,32 @@ public class Game implements Runnable{
 		
 		init();
 		
+		int fps = 60;
+		double timePerTick = 1000000000 / fps;
+		double delta = 0;
+		long now;
+		long lastTime = System.nanoTime();
+		long timer = 0;
+		int ticks = 0;
+		
 		while(running){
-			tick();
-			render();
+			now = System.nanoTime();
+			delta += (now - lastTime) / timePerTick;
+			timer += now - lastTime;
+			lastTime = now;
+			
+			if(delta >= 1){
+				tick();
+				render();
+				ticks++;
+				delta --;
+			}
+			
+			if(timer >= 1000000000){
+				System.out.println("FPS: " + ticks);
+				ticks = 0;
+				timer = 0;
+			}
 			
 		}
 		
