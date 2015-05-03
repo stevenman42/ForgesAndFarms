@@ -15,8 +15,9 @@ public class GameState extends State{
 	
 	public GameState(Game game){
 		super(game);
-		player = new Player(game, 128, 128);
+		
 		world = new World(game, "res/worlds/world1.txt");
+		player = new Player(game, world, world.getWidth() / 2, world.getHeight() / 2);
 		
 		
 	}

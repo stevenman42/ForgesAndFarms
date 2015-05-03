@@ -3,6 +3,7 @@ package main.entities;
 import java.awt.Graphics;
 
 import main.Game;
+import main.tiles.Tile;
 
 public abstract class Entity {
 	
@@ -23,6 +24,14 @@ public abstract class Entity {
 	public abstract void tick();
 	
 	public abstract void render(Graphics g);
+	
+	public int getXPosition(){
+		return (int) (x / Tile.TILE_WIDTH);
+	}
+	
+	public int getYPosition(){
+		return (int) (y / Tile.TILE_HEIGHT);
+	}
 
 
 

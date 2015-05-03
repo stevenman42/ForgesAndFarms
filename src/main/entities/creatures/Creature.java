@@ -2,6 +2,8 @@ package main.entities.creatures;
 
 import main.Game;
 import main.entities.Entity;
+import main.tiles.Tile;
+import main.worlds.World;
 
 public abstract class Creature extends Entity{
 	
@@ -14,9 +16,11 @@ public abstract class Creature extends Entity{
 	protected float speed;
 	
 	protected float xMove, yMove;
+	private World world;
 
-	public Creature(Game game, float x, float y, int width, int height) {
+	public Creature(Game game, World world, float x, float y, int width, int height) {
 		super(game, x, y, width, height);
+		this.world = world;
 		health = DEFAULT_HEALTH;
 		speed = DEFAULT_SPEED;
 		xMove = 0;
@@ -29,8 +33,10 @@ public abstract class Creature extends Entity{
 	}
 	
 	public void move(float deltaX, float deltaY){
-		x += deltaX;
-		y += deltaY;
+		if (!world.getTile((int)((x + deltaX) / Tile.TILE_WIDTH), (int)((y + deltaY) / Tile.TILE_HEIGHT)).isSolid()){
+			x += deltaX;
+			y += deltaY;
+		}
 	}
 	
 	

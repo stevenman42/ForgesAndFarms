@@ -6,21 +6,48 @@ import java.awt.Graphics;
 
 import main.Game;
 import main.KeyManager;
+import main.tiles.Tile;
+import main.worlds.World;
 
 public class Player extends Creature{
 
+	private float centerX, centerY;
+	
+	private int xWindowRange = 15; // the number of tiles that you can go in the x direction before the camera starts moving after you
+	private int yWindowRange = 7; // the same number as above pretty much, but for y instead of x
 
-	public Player(Game game, float x, float y) {
-		super(game, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+	public Player(Game game, World world, float x, float y) {
+		super(game, world, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+	
+		game.getGameCamera().centerOnEntity(this);
+		centerY = y * Tile.TILE_HEIGHT;
+		centerX = x * Tile.TILE_WIDTH;
 	}
 
 	@Override
 	public void tick() {
 		
 		getInput();
-		//move();
-		game.getGameCamera().centerOnEntity(this);
 		
+		if (x - centerX > (xWindowRange * Tile.TILE_WIDTH)){
+			game.getGameCamera().move(Tile.TILE_WIDTH, 0);
+			centerX += Tile.TILE_WIDTH;
+		}
+	
+		if (x - centerX < (-xWindowRange * Tile.TILE_WIDTH)){
+			game.getGameCamera().move(-Tile.TILE_WIDTH, 0);
+			centerX -= Tile.TILE_WIDTH;
+		}
+		
+		if (y - centerY > (yWindowRange * Tile.TILE_HEIGHT)){
+			game.getGameCamera().move(0, Tile.TILE_HEIGHT);
+			centerY += Tile.TILE_HEIGHT;
+		}
+		
+		if (y - centerY < (-yWindowRange * Tile.TILE_HEIGHT)){
+			game.getGameCamera().move(0, -Tile.TILE_HEIGHT);
+			centerY -= Tile.TILE_HEIGHT;
+		}
 	}
 	
 	private void getInput(){
