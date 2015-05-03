@@ -9,6 +9,7 @@ import main.worlds.World;
 public abstract class Entity {
 	
 	protected float x, y;
+	protected int tileX, tileY;
 	protected int width, height;
 	protected Game game;
 	protected World world;

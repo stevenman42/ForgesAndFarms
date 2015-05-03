@@ -72,7 +72,7 @@ public class Player extends Creature{
 		
 		if (game.getKeyManager().space){
 			if (KeyManager.keyActive){
-				getCurrentTile().action(world);
+				getCurrentTile().action(world, (int)(x / Tile.TILE_WIDTH), (int)(y = Tile.TILE_HEIGHT));
 			}
 			KeyManager.keyActive = false;
 		}

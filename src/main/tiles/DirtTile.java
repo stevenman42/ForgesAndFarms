@@ -9,9 +9,9 @@ public class DirtTile extends Tile{
 		super(Assets.dirt, id);
 	}
 	
-	public void action(World world){
+	public void action(World world, int x, int y){
 		System.out.println("looks like you activated a dirt tile");
-		world.setTile(100, 100, new GrassTile(1));
+		world.setTile(x, y, 0);
 	}
 
 }

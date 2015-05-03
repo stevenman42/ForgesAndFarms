@@ -31,7 +31,7 @@ public abstract class Tile {
 		
 	}
 	
-	public abstract void action(World world);
+	public abstract void action(World world, int x, int y);
 	
 	public void tick(){
 		

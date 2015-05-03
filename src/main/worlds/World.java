@@ -48,11 +48,13 @@ public class World {
 		
 	}
 	
-	public void setTile(int x, int y, Tile newTile){
-		tiles[x][y] = newTile.getId();
-		for (int i = 0; i < tiles.length; i ++){
-			System.out.println(Arrays.toString(tiles[i]));
-		}
+	public void setTile(int x, int y, int id){
+		System.out.println("before: " + tiles[x][y]);
+		tiles[x][y] = id;
+		System.out.println("after: " + tiles[x][y]);
+		//for (int i = 0; i < tiles.length; i ++){
+		//	System.out.println(Arrays.toString(tiles[i]));
+		//}
 	}
 	
 	
