@@ -13,12 +13,14 @@ public class World {
 	private int width, height; // in tiles
 	private int spawnX, spawnY;
 	private int[][] tiles;
+	private int[][] entities;
 	
 	public World(Game game, String path){
 		this.game = game;
 		System.out.println("wat");
 		//loadWorldFromFile(path);
 		tiles = createWorld(20, 20);
+		
 	}
 	
 	public void tick(){
