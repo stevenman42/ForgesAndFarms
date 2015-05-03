@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import main.states.GameState;
+import main.states.MenuState;
 import main.states.State;
 import display.Display;
 
@@ -48,7 +49,7 @@ public class Game implements Runnable{
 		gameCamera = new GameCamera(this, 0, 0);
 		
 		gameState = new GameState(this);
-		menuState = new GameState(this);
+		menuState = new MenuState(this);
 		State.setState(gameState);
 
 	}

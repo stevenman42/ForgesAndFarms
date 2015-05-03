@@ -1,6 +1,7 @@
 package main.worlds;
 
 import java.awt.Graphics;
+import java.util.Arrays;
 
 import main.Game;
 import main.tiles.Tile;
@@ -15,8 +16,8 @@ public class World {
 	
 	public World(Game game, String path){
 		this.game = game;
-		System.out.println("other wat");
-		loadWorld(path);
+		System.out.println("wat");
+		loadWorldFromFile(path);
 	}
 	
 	public void tick(){
@@ -44,7 +45,7 @@ public class World {
 		return t;
 	}
 	
-	private void loadWorld(String path){
+	private void loadWorldFromFile(String path){
 		String file = Utils.loadFileAsString(path);
 		String[] tokens = file.split("\\s+");
 		
@@ -60,6 +61,11 @@ public class World {
 			for (int x = 0; x < width; x ++){
 				tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]);
 			}
+		}
+		
+		
+		for (int i = 0; i < tiles.length; i ++){
+			System.out.println(Arrays.toString(tiles[i]));
 		}
 		
 		
