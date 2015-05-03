@@ -5,21 +5,21 @@ import graphics.Assets;
 import java.awt.Graphics;
 
 import main.Game;
+import main.KeyManager;
 
 public class Player extends Creature{
-	
-	private Game game;
+
 
 	public Player(Game game, float x, float y) {
-		super(x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
-		this.game = game;
+		super(game, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
 	}
 
 	@Override
 	public void tick() {
 		
 		getInput();
-		move();
+		//move();
+		game.getGameCamera().centerOnEntity(this);
 		
 	}
 	
@@ -28,23 +28,27 @@ public class Player extends Creature{
 		yMove = 0;
 		
 		if (game.getKeyManager().up){
-			yMove = -speed;
+			if (KeyManager.keyActive){move(0, -speed);}
+			KeyManager.keyActive = false;
 		}
 		if (game.getKeyManager().down){
-			yMove = speed;
+			if (KeyManager.keyActive){move(0, speed);}
+			KeyManager.keyActive = false;
 		}
 		if (game.getKeyManager().left){
-			xMove = -speed;
+			if (KeyManager.keyActive){move(-speed, 0);}
+			KeyManager.keyActive = false;
 		}
 		if (game.getKeyManager().right){
-			xMove = speed;
+			if (KeyManager.keyActive){move(speed, 0);}
+			KeyManager.keyActive = false;
 		}
 	}
 
 	@Override
 	public void render(Graphics g) {
 		
-		g.drawImage(Assets.player, (int) x, (int) y, width, height, null);
+		g.drawImage(Assets.player, (int) (x - game.getGameCamera().getxOffset()), (int) (y - game.getGameCamera().getyOffset()), width, height, null);
 		
 	}
 	

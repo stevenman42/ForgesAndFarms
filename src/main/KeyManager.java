@@ -8,7 +8,8 @@ public class KeyManager implements KeyListener{
 	private boolean[] keys;
 	public boolean up, down, left, right, escape;
 	
-	private boolean upReady, downReady, leftReady, rightReady;
+	
+	public static boolean keyActive;
 	
 	public KeyManager(){
 		keys = new boolean[256];
@@ -16,17 +17,13 @@ public class KeyManager implements KeyListener{
 	
 	public void tick(){
 		
-		up = (keys[KeyEvent.VK_UP] || keys[KeyEvent.VK_W]) && !upReady;
-		upReady = true;
+		up = (keys[KeyEvent.VK_UP] || keys[KeyEvent.VK_W]);
 		
-		down = (keys[KeyEvent.VK_DOWN] || keys[KeyEvent.VK_S])  && !downReady;
-		downReady = true;
+		down = (keys[KeyEvent.VK_DOWN] || keys[KeyEvent.VK_S]);
 		
-		left = (keys[KeyEvent.VK_LEFT] || keys[KeyEvent.VK_A]) && !leftReady;
-		leftReady = true;
+		left = (keys[KeyEvent.VK_LEFT] || keys[KeyEvent.VK_A]);
 		
-		right = (keys[KeyEvent.VK_RIGHT] || keys[KeyEvent.VK_D]) && !rightReady;
-		rightReady = true;
+		right = (keys[KeyEvent.VK_RIGHT] || keys[KeyEvent.VK_D]);
 		
 		escape = keys[KeyEvent.VK_ESCAPE];
 		
@@ -36,10 +33,7 @@ public class KeyManager implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		
 		keys[e.getKeyCode()] = true;
-		upReady = false;
-		downReady = false;
-		leftReady = false;
-		rightReady = false;
+		keyActive = true;
 		
 	}
 
@@ -47,10 +41,7 @@ public class KeyManager implements KeyListener{
 	public void keyReleased(KeyEvent e) {
 		
 		keys[e.getKeyCode()] = false;
-		upReady = true;
-		downReady = false;
-		leftReady = false;
-		rightReady = false;
+		keyActive = false;
 		
 	}
 
