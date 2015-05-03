@@ -11,7 +11,7 @@ public class DirtTile extends Tile{
 	
 	public void action(World world, int x, int y){
 		System.out.println("looks like you activated a dirt tile");
-		world.setTile(x, y, 0);
+		world.setTile(y, x, 0);
 	}
 
 }

@@ -18,6 +18,8 @@ public abstract class Entity {
 		this.game = game;
 		this.x = x;
 		this.y = y;
+		this.tileX = (int) (x / Tile.TILE_WIDTH);
+		this.tileY = (int) (y / Tile.TILE_HEIGHT);
 		this.width = width;
 		this.height = height;
 		this.world = world;
