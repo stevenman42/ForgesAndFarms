@@ -3,14 +3,14 @@ package main.tiles;
 import graphics.Assets;
 import main.worlds.World;
 
-public class DirtTile extends Tile{
+public class TilledDirtTile extends Tile{
 	
-	public DirtTile(int id){
-		super(Assets.dirt, id);
+	public TilledDirtTile(int id){
+		super(Assets.tilledDirt, id);
 	}
 	
 	public void action(World world, int x, int y){
-		world.setTile(y, x, 2);
+		world.setTile(y, x, 0);
 	}
 
 }

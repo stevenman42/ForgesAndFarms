@@ -12,7 +12,7 @@ public class GrassTile extends Tile{
 	}
 	
 	public void action(World world, int x, int y){
-		System.out.println("looks like you activated a grass tile");
+		world.setTile(y, x, 1);
 	}
 
 }

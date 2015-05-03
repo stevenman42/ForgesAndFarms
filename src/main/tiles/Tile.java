@@ -9,10 +9,12 @@ public abstract class Tile {
 	
 	// static stuff
 	
-	public static Tile[] tiles = new Tile[256];
+	public static Tile[] tiles = new Tile[256]; // this is the number of different types of tiles
 	public static Tile grassTile = new GrassTile(0);
 	public static Tile dirtTile = new DirtTile(1);
-	public static Tile rockTile = new RockTile(2);
+	public static Tile tilledDirtTile = new TilledDirtTile(2);
+	public static Tile rockTile = new RockTile(3);
+	
 	
 	// class
 	
