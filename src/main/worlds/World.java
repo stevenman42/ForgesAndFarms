@@ -15,6 +15,7 @@ public class World {
 	
 	public World(Game game, String path){
 		this.game = game;
+		System.out.println("other wat");
 		loadWorld(path);
 	}
 	
