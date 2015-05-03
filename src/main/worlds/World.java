@@ -18,7 +18,7 @@ public class World {
 		this.game = game;
 		System.out.println("wat");
 		//loadWorldFromFile(path);
-		tiles = createWorld(200, 200);
+		tiles = createWorld(20, 20);
 	}
 	
 	public void tick(){
@@ -49,9 +49,9 @@ public class World {
 	}
 	
 	public void setTile(int x, int y, int id){
-		System.out.println("before: " + tiles[x][y]);
+		
 		tiles[x][y] = id;
-		System.out.println("after: " + tiles[x][y]);
+		
 		//for (int i = 0; i < tiles.length; i ++){
 		//	System.out.println(Arrays.toString(tiles[i]));
 		//}

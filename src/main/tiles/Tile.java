@@ -1,6 +1,7 @@
 package main.tiles;
 
 import java.awt.Graphics;
+import main.entities.passives.*;
 import java.awt.image.BufferedImage;
 
 import main.worlds.World;
@@ -38,6 +39,8 @@ public abstract class Tile {
 	public void tick(){
 		
 	}
+	
+	
 	
 	public void render(Graphics g, int x, int y){
 		
