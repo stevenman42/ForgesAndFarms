@@ -53,7 +53,6 @@ public class Player extends Creature{
 	private void getInput(){
 		xMove = 0;
 		yMove = 0;
-		 print("hue");
 		if (game.getKeyManager().up){
 			if (KeyManager.keyActive){move(0, -speed);}
 			KeyManager.keyActive = false;
@@ -71,9 +70,9 @@ public class Player extends Creature{
 			KeyManager.keyActive = false;
 		}
 		
-		if (game.getKeyManager().right){
+		if (game.getKeyManager().space){
 			if (KeyManager.keyActive){
-				System.out.println("looks like someone pressed the spacebar...");
+				getCurrentTile().action(world);
 			}
 			KeyManager.keyActive = false;
 		}

@@ -1,6 +1,7 @@
 package main.tiles;
 
 import graphics.Assets;
+import main.worlds.World;
 
 public class GrassTile extends Tile{
 	
@@ -10,6 +11,8 @@ public class GrassTile extends Tile{
 		
 	}
 	
-	
+	public void action(World world){
+		System.out.println("looks like you activated a grass tile");
+	}
 
 }

@@ -3,7 +3,9 @@ package main.tiles;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-public class Tile {
+import main.worlds.World;
+
+public abstract class Tile {
 	
 	// static stuff
 	
@@ -25,8 +27,11 @@ public class Tile {
 		this.id = id;
 		
 		tiles[id] = this;
+
 		
 	}
+	
+	public abstract void action(World world);
 	
 	public void tick(){
 		

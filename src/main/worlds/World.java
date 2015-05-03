@@ -48,6 +48,13 @@ public class World {
 		
 	}
 	
+	public void setTile(int x, int y, Tile newTile){
+		tiles[x][y] = newTile.getId();
+		for (int i = 0; i < tiles.length; i ++){
+			System.out.println(Arrays.toString(tiles[i]));
+		}
+	}
+	
 	
 	
 	private void loadWorldFromFile(String path){
