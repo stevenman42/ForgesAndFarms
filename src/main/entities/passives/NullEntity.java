@@ -21,8 +21,8 @@ public class NullEntity extends PassiveEntity{
 	}
 	*/
 	
-	public NulleEntity(int id){
-		super(Assets.stoneWall, id);
+	public NullEntity(int id){
+		super(Assets.nullAsset, id);
 	}
 	
 	public void action(World world, int x, int y){

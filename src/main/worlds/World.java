@@ -104,7 +104,7 @@ public class World {
 
 		for (int i = 0; i < height; i ++){
 			for (int j = 0; j < width; j ++){
-				entities[i][j] = (int) (Math.random() + 2);
+				entities[i][j] = (int) (Math.random() * 2);
 			}
 		}
 		return entities;
