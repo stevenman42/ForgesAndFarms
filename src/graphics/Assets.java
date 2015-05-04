@@ -8,7 +8,8 @@ public class Assets {
 	
 	public static BufferedImage grass, dirt, stone, tilledDirt, // tiles
 								woodWall, stoneWall,
-								player;
+								player,
+								inventoryBar;
 	
 	
 	// loads in everything for the game
@@ -25,6 +26,9 @@ public class Assets {
 		stoneWall = sheet.crop(16, 16, width, height);
 		
 		player = sheet.crop(0, 48, width, height);
+		
+		SpriteSheet menus = new SpriteSheet(ImageLoader.loadImage("/textures/menu_textures.png"));
+		inventoryBar = menus.crop(0, 0, 160, 16); 
 		
 	}
 

@@ -1,6 +1,7 @@
 package main.tiles;
 
 import graphics.Assets;
+import main.entities.passives.PassiveEntity;
 import main.worlds.World;
 
 public class DirtTile extends Tile{
@@ -14,7 +15,7 @@ public class DirtTile extends Tile{
 			world.setTile(x, y, 1);
 		}
 		else
-			world.getEntity(x, y).action(world, x, y);
+			((PassiveEntity) world.getEntity(x, y)).action(world, x, y);
 	}
 
 

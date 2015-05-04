@@ -49,8 +49,6 @@ public abstract class Entity {
 	
 	public abstract void tick();
 	
-	public abstract void action(World world, int x, int y);
-	
 	public void render(Graphics g, int x, int y){
 		g.drawImage(texture, x, y, 16, 16, null);
 	}

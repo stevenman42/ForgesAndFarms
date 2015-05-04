@@ -30,5 +30,7 @@ public abstract class PassiveEntity extends Entity{
 	public void tick() {
 	}
 	
+	public abstract void action(World world, int x, int y);
+	
 	
 }

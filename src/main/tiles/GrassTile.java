@@ -1,6 +1,7 @@
 package main.tiles;
 
 import graphics.Assets;
+import main.entities.passives.PassiveEntity;
 import main.worlds.World;
 
 public class GrassTile extends Tile{
@@ -16,7 +17,7 @@ public class GrassTile extends Tile{
 			world.setTile(x, y, 1);
 		}
 		else
-			world.getEntity(y, x).action(world, x, y);
+			((PassiveEntity) world.getEntity(x, y)).action(world, x, y);
 	}
 
 }

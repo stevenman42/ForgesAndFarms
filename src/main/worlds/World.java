@@ -17,9 +17,8 @@ public class World {
 	
 	public World(Game game, String path){
 		this.game = game;
-		System.out.println("wat");
 		//loadWorldFromFile(path);
-		tiles = createWorld(20, 20);
+		tiles = createWorld(20, 21);
 		entities = randomEntities(tiles.length, tiles[0].length);
 
 	}
