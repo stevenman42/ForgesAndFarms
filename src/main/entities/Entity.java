@@ -20,7 +20,8 @@ public abstract class Entity {
 	
 	public static Entity[] entities = new Entity[256]; // this is the number of different types of tiles
 	public static Entity woodWall = new WoodFenceEntity(1);
-	public static Entity stoneWall = new StoneFenceEntity(2); 
+	public static Entity stoneWall = new StoneFenceEntity(2);
+	public static Entity nullEntity = new PassiveEntity();
 	
 	protected BufferedImage texture;
 	protected final int id;
