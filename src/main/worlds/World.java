@@ -1,9 +1,9 @@
 package main.worlds;
 
 import java.awt.Graphics;
-import java.util.Arrays;
 
 import main.Game;
+import main.entities.Entity;
 import main.tiles.Tile;
 import main.utils.Utils;
 
@@ -20,7 +20,8 @@ public class World {
 		System.out.println("wat");
 		//loadWorldFromFile(path);
 		tiles = createWorld(20, 20);
-		
+		entities = randomEntities(tiles.length, tiles[0].length);
+
 	}
 	
 	public void tick(){
@@ -37,9 +38,18 @@ public class World {
 			for (int x = xStart; x < xEnd; x ++){
 				//System.out.println(x + " " + y);
 				getTile(x, y).render(g, (int) (x * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()), (int) (y * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
+				getEntity(x, y).render(g, (int) (x * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()), (int) (y * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
 			}
 		}
 		
+	}
+	
+	public Entity getEntity(int x, int y){
+		Entity e = Entity.entities[entities[y][x]];
+		if (e == null){
+			return Entity.woodWall;
+		}
+		return e;
 	}
 	
 	public Tile getTile(int x, int y){
@@ -90,6 +100,19 @@ public class World {
 			}
 		}
 		return newWorld;
+	}
+	
+	// this should be a pretty temporary thing
+	private int[][] randomEntities(int height, int width){
+		int[][] entities = new int[height][width];
+
+		for (int i = 0; i < height; i ++){
+			for (int j = 0; j < width; j ++){
+				entities[i][j] = (int) (Math.random() * 3);
+			}
+		}
+		return entities;
+
 	}
 	
 	public int getWidth(){

@@ -17,7 +17,8 @@ public class Player extends Creature{
 	private int yWindowRange = 7; // the same number as above pretty much, but for y instead of x
 
 	public Player(Game game, World world, float x, float y) {
-		super(game, world, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+		super(game, world, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, 0);
+		// the player has the Entity id of 0
 	
 		game.getGameCamera().centerOnEntity(this);
 		centerY = y * Tile.TILE_HEIGHT;
@@ -78,7 +79,6 @@ public class Player extends Creature{
 		}
 	}
 
-	@Override
 	public void render(Graphics g) {
 		
 		g.drawImage(Assets.player, (int) (x - game.getGameCamera().getxOffset()), (int) (y - game.getGameCamera().getyOffset()), width, height, null);

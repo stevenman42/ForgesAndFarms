@@ -18,8 +18,8 @@ public abstract class Creature extends Entity{
 	protected float xMove, yMove;
 	protected World world;
 
-	public Creature(Game game, World world, float x, float y, int width, int height) {
-		super(game, world, x, y, width, height);
+	public Creature(Game game, World world, float x, float y, int width, int height, int id) {
+		super(game, world, x, y, width, height, id);
 		this.world = world;
 		health = DEFAULT_HEALTH;
 		speed = DEFAULT_SPEED;

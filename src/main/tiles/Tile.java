@@ -30,7 +30,6 @@ public abstract class Tile {
 		this.id = id;
 		
 		tiles[id] = this;
-
 		
 	}
 	

@@ -1,8 +1,12 @@
 package main.entities;
 
+import graphics.Assets;
+
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 import main.Game;
+import main.entities.passives.FenceEntity;
 import main.tiles.Tile;
 import main.worlds.World;
 
@@ -14,7 +18,16 @@ public abstract class Entity {
 	protected Game game;
 	protected World world;
 	
-	public Entity(Game game, World world, float x, float y, int width, int height){
+	public static Entity[] entities = new Entity[256]; // this is the number of different types of tiles
+	public static Entity woodWall = new FenceEntity(1);
+	public static Entity stoneWall = new FenceEntity(2); 
+	
+	protected BufferedImage texture;
+	protected final int id;
+	
+	
+	public Entity(Game game, World world, float x, float y, int width, int height, int id){
+		this.id = id;
 		this.game = game;
 		this.x = x;
 		this.y = y;
@@ -26,10 +39,19 @@ public abstract class Entity {
 	}
 	
 	
+	public Entity(BufferedImage texture, int id){
+		this.texture = texture;
+		this.id = id;
+		entities[id] = this;
+	}
+	
+	
 	
 	public abstract void tick();
 	
-	public abstract void render(Graphics g);
+	public void render(Graphics g, int x, int y){
+		g.drawImage(texture, x, y, 16, 16, null);
+	}
 	
 	
 	// returns the tile that the entity is current on
