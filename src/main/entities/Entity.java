@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import main.Game;
-import main.entities.passives.FenceEntity;
+import main.entities.passives.*;
 import main.tiles.Tile;
 import main.worlds.World;
 
@@ -19,8 +19,8 @@ public abstract class Entity {
 	protected World world;
 	
 	public static Entity[] entities = new Entity[256]; // this is the number of different types of tiles
-	public static Entity woodWall = new FenceEntity(1);
-	public static Entity stoneWall = new FenceEntity(2); 
+	public static Entity woodWall = new WoodFenceEntity(1);
+	public static Entity stoneWall = new StoneFenceEntity(2); 
 	
 	protected BufferedImage texture;
 	protected final int id;
@@ -48,6 +48,8 @@ public abstract class Entity {
 	
 	
 	public abstract void tick();
+	
+	public abstract void action(World world, int x, int y);
 	
 	public void render(Graphics g, int x, int y){
 		g.drawImage(texture, x, y, 16, 16, null);

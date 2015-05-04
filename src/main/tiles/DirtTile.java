@@ -10,7 +10,12 @@ public class DirtTile extends Tile{
 	}
 	
 	public void action(World world, int x, int y){
-		world.setTile(y, x, 2);
+		if(world.getEntity(x, y) == null){
+			world.setTile(x, y, 1);
+		}
+		else
+			world.getEntity(x, y).action(world, x, y);
 	}
+
 
 }

@@ -51,6 +51,10 @@ public class Player extends Creature{
 		}
 	}
 	
+	public void action(World world, int x, int y){
+		
+	}
+	
 	private void getInput(){
 		xMove = 0;
 		yMove = 0;

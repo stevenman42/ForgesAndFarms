@@ -38,7 +38,9 @@ public class World {
 			for (int x = xStart; x < xEnd; x ++){
 				//System.out.println(x + " " + y);
 				getTile(x, y).render(g, (int) (x * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()), (int) (y * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
-				getEntity(x, y).render(g, (int) (x * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()), (int) (y * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
+				if (getEntity(x, y) != null){
+					getEntity(x, y).render(g, (int) (x * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()), (int) (y * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
+				}
 			}
 		}
 		
@@ -46,9 +48,6 @@ public class World {
 	
 	public Entity getEntity(int x, int y){
 		Entity e = Entity.entities[entities[y][x]];
-		if (e == null){
-			return Entity.woodWall;
-		}
 		return e;
 	}
 	
@@ -57,16 +56,14 @@ public class World {
 		if (t == null)
 			return Tile.dirtTile;
 		return t;
-		
 	}
 	
 	public void setTile(int x, int y, int id){
-		
-		tiles[x][y] = id;
-		
-		//for (int i = 0; i < tiles.length; i ++){
-		//	System.out.println(Arrays.toString(tiles[i]));
-		//}
+		tiles[y][x] = id;
+	}
+	
+	public void setEntity(int x, int y, int id){
+		entities[y][x] = id;
 	}
 	
 	
@@ -108,7 +105,7 @@ public class World {
 
 		for (int i = 0; i < height; i ++){
 			for (int j = 0; j < width; j ++){
-				entities[i][j] = (int) (Math.random() * 3);
+				entities[i][j] = (int) (Math.random() + 2);
 			}
 		}
 		return entities;

@@ -8,8 +8,10 @@ import java.awt.image.BufferedImage;
 import main.Game;
 import main.worlds.World;
 
-public class FenceEntity extends PassiveEntity{
+public class StoneFenceEntity extends PassiveEntity{
 	
+
+
 	private BufferedImage texture;
 
 	/*
@@ -19,9 +21,14 @@ public class FenceEntity extends PassiveEntity{
 	}
 	*/
 	
-	public FenceEntity(int id){
+	public StoneFenceEntity(int id){
 		super(Assets.stoneWall, id);
 	}
 	
+	public void action(World world, int x, int y){
+		world.setEntity(x, y, 1);
+	}
+
+
 
 }

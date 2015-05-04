@@ -1,17 +1,12 @@
 package main.entities.passives;
 
-import graphics.Assets;
-
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import main.Game;
 import main.entities.Entity;
-import main.tiles.GrassTile;
-import main.tiles.Tile;
 import main.worlds.World;
 
-public class PassiveEntity extends Entity{
+public abstract class PassiveEntity extends Entity{
 	
 	protected BufferedImage texture;
 	private int width, height;
@@ -34,9 +29,6 @@ public class PassiveEntity extends Entity{
 	@Override
 	public void tick() {
 	}
-
-
 	
 	
-
 }

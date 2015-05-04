@@ -13,18 +13,13 @@ public class GameState extends State{
 	
 	private Player player;
 	private World world;
-	private PassiveEntity passive, other_passive;
 	
 	public GameState(Game game){
 		super(game);
 		
 		world = new World(game, "res/worlds/world1.txt");
 		player = new Player(game, world, world.getWidth() / 2, world.getHeight() / 2);
-		
-		passive = new PassiveEntity(game, world, 10.0f, 10.0f, 16, 16, 2);
-		other_passive = new PassiveEntity(Assets.woodWall, 1);
-		System.out.println(passive.getX());
-		System.out.println(passive.getY());
+
 	
 	}
 
@@ -32,7 +27,6 @@ public class GameState extends State{
 	public void tick() {
 		world.tick();
 		player.tick();
-		passive.tick();
 		
 	}
 
