@@ -43,6 +43,10 @@ public abstract class Entity {
 	public Entity(BufferedImage texture, int id){
 		this.texture = texture;
 		this.id = id;
+		if (id != 0){
+			this.width = 16;
+			this.height = 16;
+		}
 		entities[id] = this;
 	}
 	
@@ -51,7 +55,7 @@ public abstract class Entity {
 	public abstract void tick();
 	
 	public void render(Graphics g, int x, int y){
-		g.drawImage(texture, x, y, 16, 16, null);
+		g.drawImage(texture, x, y, width, height, null);
 	}
 	
 	
@@ -69,6 +73,9 @@ public abstract class Entity {
 		return (int) (y / Tile.TILE_HEIGHT);
 	}
 
+	public int getId(){
+		return id;
+	}
 
 
 	public float getX() {

@@ -13,7 +13,7 @@ public class GrassTile extends Tile{
 	}
 	
 	public void action(World world, int x, int y){
-		if(world.getEntity(x, y) == null){
+		if(world.getEntity(x, y).getId() == 0){
 			world.setTile(x, y, 1);
 		}
 		else

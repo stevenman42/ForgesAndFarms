@@ -1,6 +1,7 @@
 package main.entities.creatures;
 
 import graphics.Assets;
+import graphics.hud.InventoryBar;
 
 import java.awt.Graphics;
 
@@ -81,6 +82,23 @@ public class Player extends Creature{
 			}
 			KeyManager.keyActive = false;
 		}
+		
+		if(game.getKeyManager().one){
+			if (KeyManager.keyActive){
+				InventoryBar.setActiveSlot(1);
+			}
+		}
+		if(game.getKeyManager().two){
+			if (KeyManager.keyActive){
+				InventoryBar.setActiveSlot(2);
+			}
+		}
+		if(game.getKeyManager().three){
+			if (KeyManager.keyActive){
+				InventoryBar.setActiveSlot(3);
+			}
+		}
+		
 	}
 
 	public void render(Graphics g) {

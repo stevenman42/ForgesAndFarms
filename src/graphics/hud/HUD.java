@@ -25,7 +25,7 @@ public class HUD extends Entity{
 	}
 	
 	public void render(Graphics g, int x, int y){
-		g.drawImage(Assets.inventoryBar, x, y, 160, 16, null);
+		g.drawImage(Assets.inventoryBar, x, y, 160, 16, null); 
 	}
 
 
