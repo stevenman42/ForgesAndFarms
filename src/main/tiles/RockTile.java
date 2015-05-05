@@ -17,5 +17,9 @@ public class RockTile extends Tile{
 	public void action(World world, int x, int y){
 		System.out.println("Looks like you activated a rock!");
 	}
+	
+	public Tiles getId(){
+		return Tiles.rock;
+	}
 
 }

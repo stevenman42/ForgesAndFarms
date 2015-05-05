@@ -52,8 +52,6 @@ public abstract class Tile {
 		return false;
 	}
 	
-	public int getId(){
-		return id;
-	}
+	public abstract Tiles getId();
 
 }

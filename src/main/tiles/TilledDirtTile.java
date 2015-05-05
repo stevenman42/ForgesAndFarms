@@ -18,5 +18,9 @@ public class TilledDirtTile extends Tile{
 			((PassiveEntity) world.getEntity(x, y)).action(world, x, y);
 		}
 	}
+	
+	public Tiles getId(){
+		return Tiles.tilledDirt;
+	}
 
 }
