@@ -1,9 +1,6 @@
 package main.worlds;
 
-import graphics.Assets;
-
 import java.awt.Graphics;
-import java.util.Arrays;
 
 import main.Game;
 import main.entities.Entity;
@@ -22,13 +19,7 @@ public class World {
 		this.game = game;
 		//loadWorldFromFile(path);
 		tiles = createWorld(20, 21);
-		for (int i = 0; i < tiles.length; i ++){
-			System.out.println(Arrays.toString(tiles[i]));
-		}		
 		entities = randomEntities(tiles.length, tiles[0].length);
-		for (int i = 0; i < entities.length; i ++){
-			System.out.println(Arrays.toString(entities[i]));
-		}
 
 	}
 	
@@ -46,13 +37,13 @@ public class World {
 			for (int x = xStart; x < xEnd; x ++){
 				//System.out.println(x + " " + y);
 				getTile(x, y).render(g, (int) (x * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()), (int) (y * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
-				getEntity(x, y).render(g, (int) (x * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()), (int) (y * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
-		
+				if (getEntity(x, y) != null){
+					getEntity(x, y).render(g, (int) (x * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()), (int) (y * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
 				}
 			}
 		}
 		
-	
+	}
 	
 	public Entity getEntity(int x, int y){
 		Entity e = Entity.entities[entities[y][x]];
@@ -101,7 +92,7 @@ public class World {
 
 		for (int i = 0; i < height; i ++){
 			for (int j = 0; j < width; j ++){
-				newWorld[i][j] = (int) (Math.random() * 4);
+				newWorld[i][j] = (int) (Math.random() * 2);
 			}
 		}
 		return newWorld;
@@ -113,7 +104,7 @@ public class World {
 
 		for (int i = 0; i < height; i ++){
 			for (int j = 0; j < width; j ++){
-				entities[i][j] = (int) (Math.random() );
+				entities[i][j] = (int) (Math.random() *i 2);
 			}
 		}
 		return entities;
