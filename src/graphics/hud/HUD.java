@@ -2,6 +2,7 @@ package graphics.hud;
 
 import graphics.Assets;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -24,8 +25,10 @@ public class HUD extends Entity{
 		
 	}
 	
-	public void render(Graphics g, int x, int y){
-		g.drawImage(Assets.inventoryBar, x, y, 160, 16, null); 
+	public void render(Graphics g, int x, int y, int width, int height){
+		g.drawImage(Assets.inventoryBar, x, y, width, height, null);
+		g.setColor(Color.red);
+		g.drawRect(x + 32 * (InventoryBar.getActiveSlot() - 1), y, 32, 32);
 	}
 
 

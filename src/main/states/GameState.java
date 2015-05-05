@@ -38,7 +38,7 @@ public class GameState extends State{
 		
 		world.render(g);
 		player.render(g);
-		//invBar.render(g, game.getWidth() / 2 - 80, game.getHeight() - 16 );
+		invBar.render(g, game.getWidth() / 2 - invBar.getWidth() / 2, game.getHeight() - invBar.getHeight(), 320, 32);
 	
 	}
 	
