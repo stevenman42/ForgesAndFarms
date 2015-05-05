@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class InventoryBar extends HUD{
 	
-	private static int activeSlot = 0;
+	private static int activeSlot = 1;
 	private int width = 320;
 	private int height = 32;
 

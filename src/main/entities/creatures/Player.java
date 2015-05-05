@@ -98,6 +98,41 @@ public class Player extends Creature{
 				InventoryBar.setActiveSlot(3);
 			}
 		}
+		if(game.getKeyManager().four){
+			if (KeyManager.keyActive){
+				InventoryBar.setActiveSlot(4);
+			}
+		}
+		if(game.getKeyManager().five){
+			if (KeyManager.keyActive){
+				InventoryBar.setActiveSlot(5);
+			}
+		}
+		if(game.getKeyManager().six){
+			if (KeyManager.keyActive){
+				InventoryBar.setActiveSlot(6);
+			}
+		}
+		if(game.getKeyManager().seven){
+			if (KeyManager.keyActive){
+				InventoryBar.setActiveSlot(7);
+			}
+		}
+		if(game.getKeyManager().eight){
+			if (KeyManager.keyActive){
+				InventoryBar.setActiveSlot(8);
+			}
+		}
+		if(game.getKeyManager().nine){
+			if (KeyManager.keyActive){
+				InventoryBar.setActiveSlot(9);
+			}
+		}
+		if(game.getKeyManager().zero){
+			if (KeyManager.keyActive){
+				InventoryBar.setActiveSlot(0);
+			}
+		}
 		
 	}
 
