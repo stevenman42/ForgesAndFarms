@@ -1,6 +1,9 @@
 package main.worlds;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import main.Game;
 import main.entities.Entity;
@@ -12,14 +15,15 @@ public class World {
 	private Game game;
 	private int width, height; // in tiles
 	private int spawnX, spawnY;
-	private int[][] tiles;
-	private int[][] entities;
+	//private int[][] tiles;
+	List<List<Integer>> tiles;
+	private List<List<Integer>> entities;
 	
 	public World(Game game, String path){
 		this.game = game;
 		//loadWorldFromFile(path);
 		tiles = createWorld(20, 21);
-		entities = randomEntities(tiles.length, tiles[0].length);
+		entities = randomEntities(tiles.size(), tiles.get(0).size());
 
 	}
 	
@@ -46,23 +50,29 @@ public class World {
 	}
 	
 	public Entity getEntity(int x, int y){
-		Entity e = Entity.entities[entities[y][x]];
+		//Entity e = Entity.entities[entities[y][x]];
+		Entity e = Entity.entities[this.entities.get(y).get(x)];
 		return e;
 	}
 	
 	public Tile getTile(int x, int y){
-		Tile t = Tile.tiles[tiles[y][x]];
-		if (t == null)
+		try{
+			Tile t = Tile.tiles[tiles.get(y).get(x)];
+			if (t == null)
+				return Tile.dirtTile;
+			return t;
+		}catch(ArrayIndexOutOfBoundsException e){
+			System.out.println("nope");
 			return Tile.dirtTile;
-		return t;
+		}
 	}
 	
 	public void setTile(int x, int y, int id){
-		tiles[y][x] = id;
+		tiles.get(y).set(x, id);
 	}
 	
 	public void setEntity(int x, int y, int id){
-		entities[y][x] = id;
+		entities.get(y).set(x, id);
 	}
 	
 	
@@ -76,37 +86,60 @@ public class World {
 		spawnX = Utils.parseInt(tokens[2]);
 		spawnY = Utils.parseInt(tokens[3]);
 		
-		tiles = new int[width][height];
+		//tiles = new int[width][height];
+		tiles = new ArrayList<List<Integer>>();
 		
 		for (int y = 0; y < height; y ++){
 			for (int x = 0; x < width; x ++){
-				tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]);
+				tiles.get(x).set(y, Utils.parseInt(tokens[(x + y * width) + 4]));
 			}
 		}
 	}
 	
-	private int[][] createWorld(int worldWidth, int worldHeight){
+	private List<List<Integer>> createWorld(int worldWidth, int worldHeight){
 		this.width = worldWidth;
 		this.height = worldHeight;
-		int[][] newWorld = new int[height][width];
+		List<List<Integer>> newWorld = new ArrayList<List<Integer>>();
+		
+		// Fills the world with 0s
+		List<Integer> row = new ArrayList<Integer>();
+		for (int j = 0; j < worldWidth; j ++){
+			row.add(0);
+		}
+		for (int i = 0; i < worldHeight; i ++){
+			newWorld.add(row);
+		}
 
 		for (int i = 0; i < height; i ++){
 			for (int j = 0; j < width; j ++){
-				newWorld[i][j] = (int) (Math.random() * 2);
+				//newWorld.get(i).get(j) = (int) (Math.random() * 2);
+				newWorld.get(i).set(j, (int) (Math.random() * 2));
 			}
 		}
+
+		System.out.println(newWorld);
+		
 		return newWorld;
+		
+		
 	}
 	
 	// this should be a pretty temporary thing
-	private int[][] randomEntities(int height, int width){
-		int[][] entities = new int[height][width];
-
-		for (int i = 0; i < height; i ++){
-			for (int j = 0; j < width; j ++){
-				entities[i][j] = (int) (Math.random() * 2);
-			}
+	private List<List<Integer>> randomEntities(int height, int width){
+		List<List<Integer>> entities = new ArrayList<List<Integer>>();
+		
+		List<Integer> row = new ArrayList<Integer>();
+		
+		for (int j = 0; j < width; j ++){
+			row.add(0);
 		}
+		
+		for (int i = 0; i < height; i ++){
+			
+			entities.add(row);
+		
+		}
+		
 		return entities;
 
 	}

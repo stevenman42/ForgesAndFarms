@@ -3,6 +3,8 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import main.entities.creatures.Player;
+
 public class KeyManager implements KeyListener{
 	
 	private boolean[] keys;
@@ -10,7 +12,7 @@ public class KeyManager implements KeyListener{
 					one, two, three, four, five, six, seven, eight, nine, zero;
 	
 	
-	public static boolean keyActive;
+//	public static boolean keyActive;
 	
 	public KeyManager(){
 		keys = new boolean[256];
@@ -36,7 +38,6 @@ public class KeyManager implements KeyListener{
 		nine = (keys[KeyEvent.VK_9]);
 		zero = (keys[KeyEvent.VK_0]);
 		
-		
 		escape = keys[KeyEvent.VK_ESCAPE];
 		
 	}
@@ -45,7 +46,7 @@ public class KeyManager implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		
 		keys[e.getKeyCode()] = true;
-		keyActive = true;
+		//keyActive = true;
 		
 	}
 
@@ -53,7 +54,8 @@ public class KeyManager implements KeyListener{
 	public void keyReleased(KeyEvent e) {
 		
 		keys[e.getKeyCode()] = false;
-		keyActive = false;
+		Player.moved = false;
+//		keyActive = false;
 		
 	}
 

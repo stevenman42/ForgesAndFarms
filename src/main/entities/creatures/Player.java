@@ -17,6 +17,8 @@ public class Player extends Creature{
 	private int xWindowRange = 15; // the number of tiles that you can go in the x direction before the camera starts moving after you
 	private int yWindowRange = 7; // the same number as above pretty much, but for y instead of x
 
+	public static boolean moved = false;
+	
 	public Player(Game game, World world, float x, float y) {
 		super(game, world, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, 0);
 		// the player has the Entity id of 0
@@ -59,79 +61,72 @@ public class Player extends Creature{
 	private void getInput(){
 		xMove = 0;
 		yMove = 0;
+		
+		
 		if (game.getKeyManager().up){
-			if (KeyManager.keyActive){move(0, -speed);}
-			KeyManager.keyActive = false;
+
+			if (!moved){
+				move(0, -speed);
+				moved = true;
+			}
 		}
 		if (game.getKeyManager().down){
-			if (KeyManager.keyActive){move(0, speed);}
-			KeyManager.keyActive = false;
+
+			if (!moved){
+				move(0, speed);
+				moved = true;
+			}
 		}
 		if (game.getKeyManager().left){
-			if (KeyManager.keyActive){move(-speed, 0);}
-			KeyManager.keyActive = false;
+
+			if(!moved){
+				move(-speed, 0);
+				moved = true;
+			}
 		}
 		if (game.getKeyManager().right){
-			if (KeyManager.keyActive){move(speed, 0);}
-			KeyManager.keyActive = false;
+
+			if (!moved){
+				move(speed, 0);
+				moved = true;
+			}
 		}
 		
 		if (game.getKeyManager().space){
-			if (KeyManager.keyActive){
+			if (!moved)
 				getCurrentTile().action(world, (int)(x / Tile.TILE_WIDTH), (int)(y / Tile.TILE_HEIGHT));
-			}
-			KeyManager.keyActive = false;
+				moved = true;
 		}
 		
 		if(game.getKeyManager().one){
-			if (KeyManager.keyActive){
 				InventoryBar.setActiveSlot(1);
-			}
 		}
 		if(game.getKeyManager().two){
-			if (KeyManager.keyActive){
 				InventoryBar.setActiveSlot(2);
-			}
 		}
 		if(game.getKeyManager().three){
-			if (KeyManager.keyActive){
 				InventoryBar.setActiveSlot(3);
-			}
 		}
 		if(game.getKeyManager().four){
-			if (KeyManager.keyActive){
 				InventoryBar.setActiveSlot(4);
-			}
 		}
 		if(game.getKeyManager().five){
-			if (KeyManager.keyActive){
 				InventoryBar.setActiveSlot(5);
-			}
 		}
 		if(game.getKeyManager().six){
-			if (KeyManager.keyActive){
 				InventoryBar.setActiveSlot(6);
-			}
 		}
 		if(game.getKeyManager().seven){
-			if (KeyManager.keyActive){
 				InventoryBar.setActiveSlot(7);
-			}
 		}
 		if(game.getKeyManager().eight){
-			if (KeyManager.keyActive){
 				InventoryBar.setActiveSlot(8);
-			}
 		}
 		if(game.getKeyManager().nine){
-			if (KeyManager.keyActive){
 				InventoryBar.setActiveSlot(9);
-			}
 		}
 		if(game.getKeyManager().zero){
-			if (KeyManager.keyActive){
 				InventoryBar.setActiveSlot(0);
-			}
 		}
 		
 	}
