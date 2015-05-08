@@ -66,8 +66,14 @@ public class Player extends Creature{
 		if (game.getKeyManager().up){
 
 			if (!moved){
-				move(0, -speed);
-				moved = true;
+				if (y - speed - 1< 0){
+					World.addRow("top");
+					moved = true;
+				}
+				else{
+					move(0, -speed);
+					moved = true;
+				}
 			}
 		}
 		if (game.getKeyManager().down){
@@ -75,21 +81,36 @@ public class Player extends Creature{
 			if (!moved){
 				move(0, speed);
 				moved = true;
-				World.addColumn("right");
+				
+				// if you're about to go below the end of the world, it adds more stuff to the world
+				if (y + speed + 1 > World.getHeight() * Tile.TILE_HEIGHT){
+					World.addRow("bottom");
+				}
 			}
 		}
 		if (game.getKeyManager().left){
 
 			if(!moved){
-				move(-speed, 0);
-				moved = true;
+				if (x - speed - 1 < 0){
+					World.addColumn("left");
+					moved = true;
+				}
+				else{
+					move(-speed, 0);
+					moved = true;
+				}
 			}
 		}
 		if (game.getKeyManager().right){
 
 			if (!moved){
-				move(speed, 0);
-				moved = true;
+				if (x + speed + Tile.TILE_WIDTH * 2 > World.getWidth() * Tile.TILE_WIDTH){
+					World.addColumn("right");
+				}
+				else{
+					move(speed, 0);
+					moved = true;
+				}
 			}
 		}
 		

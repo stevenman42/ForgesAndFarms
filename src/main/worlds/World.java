@@ -46,7 +46,6 @@ public class World {
 		
 		for (int y = yStart; y < yEnd; y ++){
 			for (int x = xStart; x < xEnd; x ++){
-				//System.out.println(x + " " + y);
 				getTile(x, y).render(g, (int) (x * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()), (int) (y * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
 				if (getEntity(x, y) != null){
 					getEntity(x, y).render(g, (int) (x * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()), (int) (y * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
@@ -73,27 +72,32 @@ public class World {
 	}
 	
 	public static void addColumn(String side){
-		ArrayList<Integer> newCol = new ArrayList<Integer>();
-		for (int i = 0; i < tiles.size(); i ++){
-			newCol.add((int) (Math.random() * 2));
-		}
 		
 		if (side.equals("right")){
-			tiles.add(0, newCol);
+			for (int i = 0; i < tiles.size(); i++){
+				tiles.get(i).add((int) Math.random() * 2);
+			}
 		}
 		else{
 			for (int i = 0; i < tiles.size(); i ++){
-				tiles.get(i).add((int) (Math.random() * 2));
+				tiles.get(i).add(0, (int) (Math.random() * 2));
 			}
-			//tiles.add(newCol);
 		}
 		width += 1;
 	}
 	
 	public Entity getEntity(int x, int y){
 		//Entity e = Entity.entities[entities[y][x]];
-		Entity e = Entity.entities[this.entities.get(y).get(x)];
-		return e;
+		entities = randomEntities(tiles.size(), tiles.get(0).size());
+		try{
+			Entity e = Entity.entities[this.entities.get(y).get(x)];
+			return e;
+		}catch(IndexOutOfBoundsException g){
+			System.out.println("ha");
+		}
+	
+		return null;
+		
 	}
 	
 	
@@ -111,7 +115,11 @@ public class World {
 	}
 	
 	public void setTile(int x, int y, int id){
-		tiles.get(y).set(x, id);
+		try{
+			tiles.get(y).set(x, id);
+		}catch(IndexOutOfBoundsException e){
+			System.out.println("nope");
+		}
 	}
 	
 	public void setEntity(int x, int y, int id){
@@ -181,11 +189,11 @@ public class World {
 
 	}
 	
-	public int getWidth(){
+	public static int getWidth(){
 		return width;
 	}
 	
-	public int getHeight(){
+	public static int getHeight(){
 		return height;
 	}
 
