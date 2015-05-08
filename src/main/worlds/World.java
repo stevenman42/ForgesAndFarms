@@ -15,15 +15,20 @@ public class World {
 	private Game game;
 	private int width, height; // in tiles
 	private int spawnX, spawnY;
-	//private int[][] tiles;
 	List<List<Integer>> tiles;
+	
+	//private int[][] tiles;
+	List<List<Integer>> quadrant1, quadrant2, quadrant3, quadrant4;
 	private List<List<Integer>> entities;
 	
 	public World(Game game, String path){
 		this.game = game;
 		//loadWorldFromFile(path);
-		tiles = createWorld(20, 21);
+		tiles = createWorld(3,3);
 		entities = randomEntities(tiles.size(), tiles.get(0).size());
+		
+		System.out.println("width " + entities.get(0).size());
+		System.out.println("height " + entities.size());
 
 	}
 	
@@ -32,6 +37,8 @@ public class World {
 	}
 	
 	public void render(Graphics g){
+	
+		
 		int xStart = (int) Math.max(0, game.getGameCamera().getxOffset() / Tile.TILE_WIDTH);
 		int xEnd = (int) Math.min(width, (game.getGameCamera().getxOffset() + game.getWidth()) / Tile.TILE_WIDTH + 1);
 		int yStart = (int) Math.max(0, game.getGameCamera().getyOffset() / Tile.TILE_HEIGHT);
@@ -49,15 +56,27 @@ public class World {
 		
 	}
 	
+	public void addRow(){
+		
+	}
+	
+	public void addColumn(){
+		for (int i = 0; i < tiles.size(); i ++){
+			
+		}
+	}
+	
 	public Entity getEntity(int x, int y){
 		//Entity e = Entity.entities[entities[y][x]];
 		Entity e = Entity.entities[this.entities.get(y).get(x)];
 		return e;
 	}
 	
-	public Tile getTile(int x, int y){
+	
+	public Tile getTile(int x, int y){		
 		try{
 			Tile t = Tile.tiles[tiles.get(y).get(x)];
+
 			if (t == null)
 				return Tile.dirtTile;
 			return t;
@@ -75,8 +94,6 @@ public class World {
 		entities.get(y).set(x, id);
 	}
 	
-	
-	
 	private void loadWorldFromFile(String path){
 		String file = Utils.loadFileAsString(path);
 		String[] tokens = file.split("\\s+");
@@ -87,8 +104,8 @@ public class World {
 		spawnY = Utils.parseInt(tokens[3]);
 		
 		//tiles = new int[width][height];
-		tiles = new ArrayList<List<Integer>>();
-		
+
+
 		for (int y = 0; y < height; y ++){
 			for (int x = 0; x < width; x ++){
 				tiles.get(x).set(y, Utils.parseInt(tokens[(x + y * width) + 4]));
@@ -109,19 +126,17 @@ public class World {
 		for (int i = 0; i < worldHeight; i ++){
 			newWorld.add(row);
 		}
+		
 
 		for (int i = 0; i < height; i ++){
-			for (int j = 0; j < width; j ++){
-				//newWorld.get(i).get(j) = (int) (Math.random() * 2);
-				newWorld.get(i).set(j, (int) (Math.random() * 2));
+			row = new ArrayList<Integer>();
+			for (int j = 0; j < width; j ++){		
+				row.add((int) (Math.random() * 2));
 			}
+			newWorld.set(i, row);
 		}
-
 		System.out.println(newWorld);
-		
 		return newWorld;
-		
-		
 	}
 	
 	// this should be a pretty temporary thing
@@ -133,11 +148,9 @@ public class World {
 		for (int j = 0; j < width; j ++){
 			row.add(0);
 		}
-		
-		for (int i = 0; i < height; i ++){
-			
+
+		for (int i = 0; i < height; i ++){			
 			entities.add(row);
-		
 		}
 		
 		return entities;
