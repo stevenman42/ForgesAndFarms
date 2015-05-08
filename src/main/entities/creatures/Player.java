@@ -75,6 +75,7 @@ public class Player extends Creature{
 			if (!moved){
 				move(0, speed);
 				moved = true;
+				World.addColumn("right");
 			}
 		}
 		if (game.getKeyManager().left){

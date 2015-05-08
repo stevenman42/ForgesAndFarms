@@ -13,9 +13,9 @@ import main.utils.Utils;
 public class World {
 	
 	private Game game;
-	private int width, height; // in tiles
+	private static int width, height; // in tiles
 	private int spawnX, spawnY;
-	List<List<Integer>> tiles;
+	private static List<List<Integer>> tiles;
 	
 	//private int[][] tiles;
 	List<List<Integer>> quadrant1, quadrant2, quadrant3, quadrant4;
@@ -56,14 +56,38 @@ public class World {
 		
 	}
 	
-	public void addRow(){
+	public static void addRow(String side){
+		ArrayList<Integer> newRow = new ArrayList<Integer>();
+		for (int i = 0; i < tiles.get(0).size(); i ++){
+			newRow.add((int) (Math.random() * 2));
+		}
 		
+		if (side.equals("top")){
+			tiles.add(0, newRow);
+		}
+		else{
+			tiles.add(newRow);
+		}
+		System.out.println(tiles);
+		height += 1;
 	}
 	
-	public void addColumn(){
+	public static void addColumn(String side){
+		ArrayList<Integer> newCol = new ArrayList<Integer>();
 		for (int i = 0; i < tiles.size(); i ++){
-			
+			newCol.add((int) (Math.random() * 2));
 		}
+		
+		if (side.equals("right")){
+			tiles.add(0, newCol);
+		}
+		else{
+			for (int i = 0; i < tiles.size(); i ++){
+				tiles.get(i).add((int) (Math.random() * 2));
+			}
+			//tiles.add(newCol);
+		}
+		width += 1;
 	}
 	
 	public Entity getEntity(int x, int y){
