@@ -75,7 +75,7 @@ public class World {
 		
 		if (side.equals("right")){
 			for (int i = 0; i < tiles.size(); i++){
-				tiles.get(i).add((int) Math.random() * 2);
+				tiles.get(i).add((int) (Math.random() * 2));
 			}
 		}
 		else{
