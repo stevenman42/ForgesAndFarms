@@ -7,7 +7,11 @@ import java.awt.Graphics;
 
 import main.Game;
 import main.KeyManager;
+import main.entities.Entity;
+import main.entities.passives.NullEntity;
+import main.inventory.Inventory;
 import main.tiles.Tile;
+import main.tiles.Tiles;
 import main.worlds.World;
 
 public class Player extends Creature{
@@ -26,6 +30,10 @@ public class Player extends Creature{
 		game.getGameCamera().centerOnEntity(this);
 		centerY = y * Tile.TILE_HEIGHT;
 		centerX = x * Tile.TILE_WIDTH;
+	}
+
+	public Entity getCurrentEntity(){
+		return world.getEntity((int) (x / Tile.TILE_WIDTH),(int) (y / Tile.TILE_HEIGHT));
 	}
 
 	@Override
@@ -115,9 +123,18 @@ public class Player extends Creature{
 		}
 		
 		if (game.getKeyManager().space){
-			if (!moved)
+			if (!moved){
+				
+				System.out.println(getCurrentEntity().getId());
+				if (getCurrentEntity().getId() != 0){
+					Inventory.changeItem(Entity.entities[0]);
+					System.out.println("changed your inventory");
+				}
+				//System.out.println(Inventory.getActiveItem());
+				
 				getCurrentTile().action(world, (int)(x / Tile.TILE_WIDTH), (int)(y / Tile.TILE_HEIGHT));
 				moved = true;
+			}
 		}
 		
 		if(game.getKeyManager().one){

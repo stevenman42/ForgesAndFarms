@@ -1,11 +1,17 @@
 package main.inventory;
 
+import graphics.hud.InventoryBar;
+
 public class Inventory {
 	
 	private static Object[] hotbar = new Object[10];
 	
 	public static Object getItem(int slot){
 		return hotbar[slot];
+	}
+	
+	public static Object getActiveItem(){
+		return hotbar[InventoryBar.getActiveSlot()];
 	}
 	
 	public static void changeItem(Object newItem, int oldSlot, int newSlot){

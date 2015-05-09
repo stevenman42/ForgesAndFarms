@@ -35,6 +35,10 @@ public abstract class Tile {
 	
 	public abstract void action(World world, int x, int y);
 	
+	public void placeTile(World world, int x, int y, int id){
+		world.setTile(x, y, id);
+	}
+	
 	
 	public void tick(){
 		

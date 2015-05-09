@@ -24,7 +24,7 @@ public class World {
 	public World(Game game, String path){
 		this.game = game;
 		//loadWorldFromFile(path);
-		tiles = createWorld(3,3);
+		tiles = createWorld(20,20);
 		entities = randomEntities(tiles.size(), tiles.get(0).size());
 		
 		System.out.println("width " + entities.get(0).size());
@@ -47,7 +47,7 @@ public class World {
 		for (int y = yStart; y < yEnd; y ++){
 			for (int x = xStart; x < xEnd; x ++){
 				getTile(x, y).render(g, (int) (x * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()), (int) (y * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
-				if (getEntity(x, y) != null){
+				if (getEntity(x, y).getId() != 0){
 					getEntity(x, y).render(g, (int) (x * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()), (int) (y * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
 				}
 			}
@@ -67,7 +67,6 @@ public class World {
 		else{
 			tiles.add(newRow);
 		}
-		System.out.println(tiles);
 		height += 1;
 	}
 	
@@ -88,7 +87,7 @@ public class World {
 	
 	public Entity getEntity(int x, int y){
 		//Entity e = Entity.entities[entities[y][x]];
-		entities = randomEntities(tiles.size(), tiles.get(0).size());
+		//entities = randomEntities(tiles.size(), tiles.get(0).size());
 		try{
 			Entity e = Entity.entities[this.entities.get(y).get(x)];
 			return e;
@@ -167,7 +166,6 @@ public class World {
 			}
 			newWorld.set(i, row);
 		}
-		System.out.println(newWorld);
 		return newWorld;
 	}
 	
@@ -178,7 +176,7 @@ public class World {
 		List<Integer> row = new ArrayList<Integer>();
 		
 		for (int j = 0; j < width; j ++){
-			row.add(0);
+			row.add((int)(Math.random() * 2));
 		}
 
 		for (int i = 0; i < height; i ++){			

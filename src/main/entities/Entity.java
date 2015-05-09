@@ -55,7 +55,8 @@ public abstract class Entity {
 	public abstract void tick();
 	
 	public void render(Graphics g, int x, int y){
-		g.drawImage(texture, x, y, width, height, null);
+		if (id != 0)
+			g.drawImage(texture, x, y, 15, 15, null);
 	}
 	
 	
@@ -64,6 +65,7 @@ public abstract class Entity {
 	public Tile getCurrentTile(){
 		return world.getTile((int) (x / Tile.TILE_WIDTH), (int) (y / Tile.TILE_HEIGHT));
 	}
+	
 	
 	public int getXPosition(){
 		return (int) (x / Tile.TILE_WIDTH);

@@ -32,9 +32,15 @@ public class HUD extends Entity{
 		g.setColor(Color.red);
 		g.drawRect(x + 32 * (InventoryBar.getActiveSlot() - 1), y, 32, 32);
 		for (int i = 0; i < 10; i ++){
-			Tile stupid = (Tile) Inventory.getItem(i);
-			if (stupid != null)
-				stupid.render(g, x + 32 * (InventoryBar.getActiveSlot() - 1), y);
+			try{
+				Tile stupid = (Tile) Inventory.getItem(i);
+				if (stupid != null)
+					stupid.render(g, x + 32 * (InventoryBar.getActiveSlot() - 1), y - 16);
+			}catch(ClassCastException e){
+				Entity notStupid = (Entity) Inventory.getItem(i);
+				if (notStupid != null)
+					notStupid.render(g, x + 32 * (InventoryBar.getActiveSlot() - 1), y - 16);
+			}
 		}
 	}
 
