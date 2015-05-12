@@ -125,9 +125,9 @@ public class Player extends Creature{
 		if (game.getKeyManager().space){
 			if (!moved){
 				
-				System.out.println(getCurrentEntity().getId());
+				//System.out.println(getCurrentEntity().getId());
 				if (getCurrentEntity().getId() != 0){
-					Inventory.changeItem(Entity.entities[0]);
+					Inventory.changeItem(getCurrentEntity());
 					System.out.println("changed your inventory");
 				}
 				//System.out.println(Inventory.getActiveItem());

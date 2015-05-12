@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import main.Game;
+import main.inventory.Inventory;
 import main.worlds.World;
 
 public class StoneFenceEntity extends PassiveEntity{
@@ -26,6 +27,9 @@ public class StoneFenceEntity extends PassiveEntity{
 	}
 	
 	public void action(World world, int x, int y){
+		if (Inventory.getActiveItem() == null){
+			System.out.println("main.entities.passives.StoneFenceEntity.java: ye");
+		}
 		world.setEntity(x, y, 1);
 	}
 

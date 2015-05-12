@@ -179,7 +179,7 @@ public class World {
 			List<Integer> row = new ArrayList<Integer>();
 			
 			for (int j = 0; j < width; j ++){
-				row.add((int)(Math.random() * 2));
+				row.add((int)(Math.random() * 3));
 			}
 			
 			entities.add(row);

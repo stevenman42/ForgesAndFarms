@@ -14,10 +14,13 @@ public class GrassTile extends Tile{
 	
 	public void action(World world, int x, int y){
 		if(world.getEntity(x, y) == null || world.getEntity(x, y).getId() == 0){
+			// changes the tile to dirt if there isn't an entity on the tile
 			world.setTile(x, y, 1);
 		}
-		else
+		else{
 			((PassiveEntity) world.getEntity(x, y)).action(world, x, y);
+			System.out.println("main.tiles.GrassTile.java: activated the thing");
+		}
 	}
 	
 	public Tiles getId(){
