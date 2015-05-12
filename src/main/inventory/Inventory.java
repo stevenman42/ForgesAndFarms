@@ -13,7 +13,7 @@ public class Inventory {
 	
 	// returns the "active" object in the inventory - the one that the box is on
 	public static Object getActiveItem(){
-		return hotbar[InventoryBar.getActiveSlot()];
+		return hotbar[InventoryBar.getActiveSlot() - 1];
 	}
 	
 	// modifies the  hotbar by switching two items

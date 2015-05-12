@@ -56,14 +56,20 @@ public abstract class Entity {
 	
 	public void render(Graphics g, int x, int y){
 		if (id != 0)
-			g.drawImage(texture, x, y, 15, 15, null);
+			g.drawImage(texture, x, y, width, height, null);
 	}
 	
 	
 	// returns the tile that the entity is current on
 	// if, for some reason, the entity takes up more that one tile, I think it returns the one that the origin of the entity is on
 	public Tile getCurrentTile(){
+		//System.out.println("the tile at x position: " + x + " and y position: " + y + " is " + world.getTile((int) (x / Tile.TILE_WIDTH), (int) (y / Tile.TILE_HEIGHT)));
 		return world.getTile((int) (x / Tile.TILE_WIDTH), (int) (y / Tile.TILE_HEIGHT));
+	}
+	
+	public Entity getCurrentEntity(){
+		System.out.println("the entity at x position: " + x + " and y position: " + y + "  is " + world.getEntity((int)(x / Tile.TILE_WIDTH), (int) (y / Tile.TILE_HEIGHT)));
+		return world.getEntity((int)(x / Tile.TILE_WIDTH), (int) (y / Tile.TILE_HEIGHT));
 	}
 	
 	

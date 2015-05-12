@@ -32,9 +32,9 @@ public class Player extends Creature{
 		centerX = x * Tile.TILE_WIDTH;
 	}
 
-	public Entity getCurrentEntity(){
-		return world.getEntity((int) (x / Tile.TILE_WIDTH),(int) (y / Tile.TILE_HEIGHT));
-	}
+//	public Entity getCurrentEntity(){
+//		return world.getEntity((int) (x / Tile.TILE_WIDTH),(int) (y / Tile.TILE_HEIGHT));
+//	}
 
 	@Override
 	public void tick() {
@@ -125,6 +125,8 @@ public class Player extends Creature{
 		if (game.getKeyManager().space){
 			if (!moved){
 				
+
+				
 				//System.out.println(getCurrentEntity().getId());
 				if (getCurrentEntity().getId() != 0){
 					Inventory.changeItem(getCurrentEntity());
@@ -134,6 +136,18 @@ public class Player extends Creature{
 				
 				getCurrentTile().action(world, (int)(x / Tile.TILE_WIDTH), (int)(y / Tile.TILE_HEIGHT));
 				moved = true;
+				// this prints the contents of the inventory
+				for (int i = 0; i < 10; i ++){
+					if (Inventory.getItem(i) != null && Inventory.getItem(i).getClass() == Entity.entities[1].getClass()){
+						System.out.print("wood_fence ");
+					}
+					else if (Inventory.getItem(i) != null && Inventory.getItem(i).getClass() == Entity.entities[2].getClass()){
+						System.out.print("stone_fence ");
+					}
+					else
+						System.out.print(Inventory.getItem(i) + " ");
+				}
+				System.out.println();
 			}
 		}
 		
@@ -166,6 +180,11 @@ public class Player extends Creature{
 		}
 		if(game.getKeyManager().zero){
 				InventoryBar.setActiveSlot(0);
+		}
+		
+		if(game.getKeyManager().escape){
+			System.out.println("Closing...");
+			System.exit(64);
 		}
 		
 	}

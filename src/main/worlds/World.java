@@ -27,8 +27,6 @@ public class World {
 		tiles = createWorld(20,20);
 		entities = randomEntities(tiles.size(), tiles.get(0).size());
 		
-		System.out.println("width " + entities.get(0).size());
-		System.out.println("height " + entities.size());
 
 	}
 	

@@ -22,6 +22,8 @@ public class StoneFenceEntity extends PassiveEntity{
 	}
 	*/
 	
+	public String name = "stone_fence"; // this should be  pretty temporary
+	
 	public StoneFenceEntity(int id){
 		super(Assets.stoneWall, id);
 	}
@@ -30,7 +32,7 @@ public class StoneFenceEntity extends PassiveEntity{
 		if (Inventory.getActiveItem() == null){
 			System.out.println("main.entities.passives.StoneFenceEntity.java: ye");
 		}
-		world.setEntity(x, y, 1);
+		world.setEntity(x, y, 0);
 	}
 
 

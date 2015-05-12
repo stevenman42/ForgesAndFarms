@@ -13,6 +13,8 @@ public class WoodFenceEntity extends PassiveEntity{
 
 
 	private BufferedImage texture;
+	
+	public String name = "wood_fence"; // this should be temporary
 
 	/*
 	public FenceEntity(Game game, World world, float x, float y, int width, int height, BufferedImage texture) {
@@ -26,7 +28,7 @@ public class WoodFenceEntity extends PassiveEntity{
 	}
 	
 	public void action(World world, int x, int y){
-		world.setEntity(x, y, 1);
+		world.setEntity(x, y, 0);
 	}
 
 
