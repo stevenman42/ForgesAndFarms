@@ -172,14 +172,16 @@ public class World {
 	// this should be a pretty temporary thing
 	private List<List<Integer>> randomEntities(int height, int width){
 		List<List<Integer>> entities = new ArrayList<List<Integer>>();
-		
-		List<Integer> row = new ArrayList<Integer>();
-		
-		for (int j = 0; j < width; j ++){
-			row.add((int)(Math.random() * 2));
-		}
+
 
 		for (int i = 0; i < height; i ++){			
+			
+			List<Integer> row = new ArrayList<Integer>();
+			
+			for (int j = 0; j < width; j ++){
+				row.add((int)(Math.random() * 2));
+			}
+			
 			entities.add(row);
 		}
 		
