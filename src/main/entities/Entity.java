@@ -68,7 +68,7 @@ public abstract class Entity {
 	}
 	
 	public Entity getCurrentEntity(){
-		System.out.println("the entity at x position: " + x + " and y position: " + y + "  is " + world.getEntity((int)(x / Tile.TILE_WIDTH), (int) (y / Tile.TILE_HEIGHT)));
+		//System.out.println("the entity at x position: " + x + " and y position: " + y + "  is " + world.getEntity((int)(x / Tile.TILE_WIDTH), (int) (y / Tile.TILE_HEIGHT)));
 		return world.getEntity((int)(x / Tile.TILE_WIDTH), (int) (y / Tile.TILE_HEIGHT));
 	}
 	

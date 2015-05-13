@@ -23,16 +23,19 @@ public class Inventory {
 		hotbar[oldSlot] = hotbar[newSlot];
 		hotbar[newSlot] = temp;
 		
-		for (int i = 0; i < 10; i ++){
-			System.out.println(hotbar[i].getClass());
-		}
 	}
 	
 	// modifies the hotbar by putting a new item in an empty slot
 	public static boolean changeItem(Object newItem){
 		
 		for (int i = 0; i < 10; i ++){
-			if (hotbar[i] == null){
+			
+			if (hotbar[i] == newItem){
+				System.out.println("you already have that in your inventory stupid");
+				return false;
+			}
+			
+			else if (hotbar[i] == null){
 				hotbar[i] = newItem;
 				return true;
 			}

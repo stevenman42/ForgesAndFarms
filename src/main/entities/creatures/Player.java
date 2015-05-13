@@ -130,12 +130,13 @@ public class Player extends Creature{
 				//System.out.println(getCurrentEntity().getId());
 				if (getCurrentEntity().getId() != 0){
 					Inventory.changeItem(getCurrentEntity());
-					System.out.println("changed your inventory");
+					//System.out.println("changed your inventory");
 				}
 				//System.out.println(Inventory.getActiveItem());
 				
 				getCurrentTile().action(world, (int)(x / Tile.TILE_WIDTH), (int)(y / Tile.TILE_HEIGHT));
 				moved = true;
+				
 				// this prints the contents of the inventory
 				for (int i = 0; i < 10; i ++){
 					if (Inventory.getItem(i) != null && Inventory.getItem(i).getClass() == Entity.entities[1].getClass()){

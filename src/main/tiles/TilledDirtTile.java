@@ -2,6 +2,7 @@ package main.tiles;
 
 import graphics.Assets;
 import main.entities.passives.PassiveEntity;
+import main.inventory.Inventory;
 import main.worlds.World;
 
 public class TilledDirtTile extends Tile{
@@ -11,12 +12,10 @@ public class TilledDirtTile extends Tile{
 	}
 	
 	public void action(World world, int x, int y){
-		if(world.getEntity(x, y).getId() == 0){
-			world.setTile(x, y, 0);
-		}
-		else{
-			((PassiveEntity) world.getEntity(x, y)).action(world, x, y);
-		}
+		if (Inventory.getActiveItem() == null)
+			super.action(world, x, y);
+		else
+			System.out.println("You can't place a fence on a tilled dirt tile silly");
 	}
 	
 	public Tiles getId(){

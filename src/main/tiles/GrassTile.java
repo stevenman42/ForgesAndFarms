@@ -14,21 +14,7 @@ public class GrassTile extends Tile{
 		
 	}
 	
-	public void action(World world, int x, int y){
-		System.out.println("the active item is: " + Inventory.getActiveItem());
-		if (Inventory.getActiveItem() != null && Inventory.getActiveItem().getClass() != Entity.entities[0].getClass() &&
-				(world.getEntity(x, y).getClass() == Entity.entities[0].getClass() || world.getEntity(x, y) == null)){
-			world.setEntity(x, y, ((Entity) Inventory.getActiveItem()).getId());
-		}
-		else if(world.getEntity(x, y) == null || world.getEntity(x, y).getId() == 0){
-			// changes the tile to dirt if there isn't an entity on the tile
-			world.setTile(x, y, 1);
-		}
 
-		else{
-			((PassiveEntity) world.getEntity(x, y)).action(world, x, y);
-		}
-	}
 	
 	public Tiles getId(){
 		return Tiles.dirt;

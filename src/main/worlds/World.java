@@ -19,7 +19,7 @@ public class World {
 	
 	//private int[][] tiles;
 	List<List<Integer>> quadrant1, quadrant2, quadrant3, quadrant4;
-	private List<List<Integer>> entities;
+	private static List<List<Integer>> entities;
 	
 	public World(Game game, String path){
 		this.game = game;
@@ -45,7 +45,7 @@ public class World {
 		for (int y = yStart; y < yEnd; y ++){
 			for (int x = xStart; x < xEnd; x ++){
 				getTile(x, y).render(g, (int) (x * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()), (int) (y * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
-				if (getEntity(x, y).getId() != 0){
+				if (getEntity(x, y) != null && getEntity(x, y).getId() != 0){
 					getEntity(x, y).render(g, (int) (x * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()), (int) (y * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
 				}
 			}
@@ -61,9 +61,12 @@ public class World {
 		
 		if (side.equals("top")){
 			tiles.add(0, newRow);
+			addEntityRow("top");
 		}
 		else{
 			tiles.add(newRow);
+			addEntityRow("bottom");
+			
 		}
 		height += 1;
 	}
@@ -74,13 +77,43 @@ public class World {
 			for (int i = 0; i < tiles.size(); i++){
 				tiles.get(i).add((int) (Math.random() * 2));
 			}
+			addEntityColumn("right");
 		}
 		else{
 			for (int i = 0; i < tiles.size(); i ++){
 				tiles.get(i).add(0, (int) (Math.random() * 2));
 			}
+			addEntityColumn("left");
 		}
 		width += 1;
+	}
+	
+	public static void addEntityRow(String side){
+		ArrayList<Integer> newRow = new ArrayList<Integer>();
+		for (int i = 0; i < tiles.get(0).size(); i ++){
+			newRow.add((int) (Math.random() * 2));
+		}
+		
+		if (side.equals("top")){
+			entities.add(0, newRow);
+		}
+		else{
+			entities.add(newRow);
+		}
+	}
+
+	public static void addEntityColumn(String side){
+		
+		if (side.equals("right")){
+			for (int i = 0; i < tiles.size(); i++){
+				entities.get(i).add((int) (Math.random() * 2));
+			}
+		}
+		else{
+			for (int i = 0; i < tiles.size(); i ++){
+				entities.get(i).add(0, (int) (Math.random() * 2));
+			}
+		}
 	}
 	
 	public Entity getEntity(int x, int y){
@@ -90,7 +123,7 @@ public class World {
 			Entity e = Entity.entities[this.entities.get(y).get(x)];
 			return e;
 		}catch(IndexOutOfBoundsException g){
-			System.out.println("ha");
+			System.out.println("World.java: getEntity() method");
 		}
 	
 		return null;
