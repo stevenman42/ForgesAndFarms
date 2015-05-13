@@ -14,9 +14,6 @@ public class DirtTile extends Tile{
 	}
 	
 
-	public Tiles getId(){
-		return Tiles.dirt;
-	}
 
 
 }

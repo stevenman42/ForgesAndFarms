@@ -16,8 +16,6 @@ public class GrassTile extends Tile{
 	
 
 	
-	public Tiles getId(){
-		return Tiles.dirt;
-	}
+
 
 }

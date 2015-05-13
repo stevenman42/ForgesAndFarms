@@ -1,6 +1,7 @@
 package main.tiles;
 
 import graphics.Assets;
+import main.inventory.Inventory;
 import main.worlds.World;
 
 public class RockTile extends Tile{
@@ -17,18 +18,18 @@ public class RockTile extends Tile{
 	}
 	
 	public void action(World world, int x, int y){
-		System.out.println("Looks like you activated a rock!");
 		
 		if (health == 0){
+			world.setEntity(x, y, 0);
 			world.setTile(x, y, 1);
+			Inventory.changeItem(new RockTile(3));
+			health = 5;
 		}
 		else
 			health --;
 		
 	}
 	
-	public Tiles getId(){
-		return Tiles.rock;
-	}
+
 
 }

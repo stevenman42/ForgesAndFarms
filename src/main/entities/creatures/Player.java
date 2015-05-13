@@ -6,12 +6,11 @@ import graphics.hud.InventoryBar;
 import java.awt.Graphics;
 
 import main.Game;
-import main.KeyManager;
-import main.entities.Entity;
-import main.entities.passives.NullEntity;
+//import main.KeyManager;
+//import main.entities.Entity;
+//import main.entities.passives.NullEntity;
 import main.inventory.Inventory;
 import main.tiles.Tile;
-import main.tiles.Tiles;
 import main.worlds.World;
 
 public class Player extends Creature{

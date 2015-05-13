@@ -25,16 +25,18 @@ public class Inventory {
 		
 	}
 	
-	// modifies the hotbar by putting a new item in an empty slot
+	// modifies the hotbar by putting a new item in the first empty slot an empty slot
 	public static boolean changeItem(Object newItem){
 		
 		for (int i = 0; i < 10; i ++){
 			
-			if (hotbar[i] == newItem){
-				//System.out.println("you already have that in your inventory stupid");
+			// returns false if the item already is in the inventory
+			if (hotbar[i] != null && (hotbar[i] == newItem || hotbar[i].getClass() == newItem.getClass())){
+				System.out.println("you already have that in your inventory");
 				return false;
 			}
 			
+
 			else if (hotbar[i] == null){
 				hotbar[i] = newItem;
 				return true;
