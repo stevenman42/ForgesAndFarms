@@ -39,7 +39,7 @@ public abstract class Tile {
 	
 	public void action(World world, int x, int y){
 		//System.out.println("the active item is: " + Inventory.getActiveItem());
-		System.out.println("called the action method in the Tile class (Tile.java)");
+		//System.out.println("called the action method in the Tile class (Tile.java)");
 		// makes sure that there is an entity selected in the inventory, and that there isn't an entity on the ground
 		if (Inventory.getActiveItem() != null && Inventory.getActiveItem().getClass() != Entity.entities[0].getClass() &&
 				(world.getEntity(x, y).getClass() == Entity.entities[0].getClass() || world.getEntity(x, y) == null)){

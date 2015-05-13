@@ -138,6 +138,8 @@ public class Player extends Creature{
 				moved = true;
 				
 				// this prints the contents of the inventory
+				
+				/*
 				for (int i = 0; i < 10; i ++){
 					if (Inventory.getItem(i) != null && Inventory.getItem(i).getClass() == Entity.entities[1].getClass()){
 						System.out.print("wood_fence ");
@@ -149,6 +151,7 @@ public class Player extends Creature{
 						System.out.print(Inventory.getItem(i) + " ");
 				}
 				System.out.println();
+				*/
 			}
 		}
 		

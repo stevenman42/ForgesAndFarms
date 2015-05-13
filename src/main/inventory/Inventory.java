@@ -31,7 +31,7 @@ public class Inventory {
 		for (int i = 0; i < 10; i ++){
 			
 			if (hotbar[i] == newItem){
-				System.out.println("you already have that in your inventory stupid");
+				//System.out.println("you already have that in your inventory stupid");
 				return false;
 			}
 			
