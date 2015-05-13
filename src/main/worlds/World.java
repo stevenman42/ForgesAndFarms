@@ -193,7 +193,7 @@ public class World {
 		for (int i = 0; i < height; i ++){
 			row = new ArrayList<Integer>();
 			for (int j = 0; j < width; j ++){		
-				row.add((int) (Math.random() * 2));
+				row.add((int) (Math.random() * 4));
 			}
 			newWorld.set(i, row);
 		}

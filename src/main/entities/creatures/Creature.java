@@ -41,6 +41,14 @@ public abstract class Creature extends Entity{
 			tileX = (int) (x / Tile.TILE_WIDTH);
 			tileY = (int) (y / Tile.TILE_HEIGHT);
 		}
+		else if ((world.getTile((int)((x + deltaX) / Tile.TILE_WIDTH), (int)((y + deltaY) / Tile.TILE_HEIGHT)).isSolid())){
+			if (deltaX == 0){
+				world.getTile((int) tileX, (int) (tileY + (deltaY / Tile.TILE_HEIGHT))).action(world, tileX, (int)(tileY + deltaY / Tile.TILE_HEIGHT) );
+			}
+			else if (deltaY == 0){
+				world.getTile((int) (tileX + deltaX / Tile.TILE_WIDTH) , (int) tileY).action(world, (int) (tileX + deltaX / Tile.TILE_WIDTH), tileY);
+			}
+		}
 	}
 	
 	
