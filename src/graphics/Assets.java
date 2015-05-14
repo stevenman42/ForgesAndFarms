@@ -8,7 +8,7 @@ public class Assets {
 	
 	public static BufferedImage grass, dirt, stone, tilledDirt, // tiles
 								woodWall, stoneWall,
-								player,
+								player, zombie,
 								inventoryBar,
 								nullAsset;
 	
@@ -27,6 +27,7 @@ public class Assets {
 		stoneWall = sheet.crop(16, 16, width, height);
 		
 		player = sheet.crop(0, 48, width, height);
+		zombie = sheet.crop(16, 48, width, height);
 		
 		nullAsset = sheet.crop(0, 0, 1, 1);
 		

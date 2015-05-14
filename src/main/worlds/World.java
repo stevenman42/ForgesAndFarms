@@ -2,7 +2,6 @@ package main.worlds;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import main.Game;
@@ -24,7 +23,7 @@ public class World {
 	public World(Game game, String path){
 		this.game = game;
 		//loadWorldFromFile(path);
-		tiles = createWorld(20,20);
+		tiles = createWorld(75,75);
 		entities = randomEntities(tiles.size(), tiles.get(0).size());
 		
 

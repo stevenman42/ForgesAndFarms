@@ -65,6 +65,7 @@ public class Player extends Creature{
 		
 	}
 	
+	
 	private void getInput(){
 		xMove = 0;
 		yMove = 0;
@@ -189,6 +190,7 @@ public class Player extends Creature{
 			System.out.println("Closing...");
 			System.exit(64);
 		}
+	
 		
 	}
 

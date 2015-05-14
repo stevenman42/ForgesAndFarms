@@ -32,7 +32,7 @@ public class Inventory {
 			
 			// returns false if the item already is in the inventory
 			if (hotbar[i] != null && (hotbar[i] == newItem || hotbar[i].getClass() == newItem.getClass())){
-				System.out.println("you already have that in your inventory");
+				//System.out.println("you already have that in your inventory");
 				return false;
 			}
 			
@@ -47,7 +47,7 @@ public class Inventory {
 			System.out.println(hotbar[i].getClass());
 		}
 		
-		System.out.println("Could not add item because there are no empty slots");
+		//System.out.println("Could not add item because there are no empty slots");
 		return false;
 	}
 }
