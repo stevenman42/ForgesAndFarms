@@ -18,6 +18,8 @@ public class GameState extends State{
 	private World world;
 	private HUD invBar;
 	private Zombie zombie;
+
+	private static boolean turned;
 	
 	public GameState(Game game){
 		super(game);
@@ -34,9 +36,23 @@ public class GameState extends State{
 	public void tick() {
 		world.tick();
 		player.tick();
-		if (Player.moved){
+		turn();
+	}
+	
+	
+	// a turn is pretty darn similar to a tick in that it updates everything
+	// however, the player decides when turns occur by doing stuff
+	public void turn(){
+		if (!turned){
+			// do turn stuff
 			zombie.tick();
+			System.out.println("turn");
+			turned = true;
 		}
+	}
+	
+	public static void setTurned(boolean newTurned){
+		turned = newTurned;
 	}
 
 	@Override
@@ -48,22 +64,4 @@ public class GameState extends State{
 		zombie.render(g);
 	
 	}
-	
-	// this is for testing purposes
-	/*
-	public static void main(String [] args){
-		LinkedList hue = new LinkedList();
-		LinkedList hue_too = new LinkedList();
-		
-		hue_too.offer(1);
-		
-		hue.offer(hue_too);
-		hue.offer(hue_too);
-		System.out.println(hue);
-
-	}
-	*/
-	
-	
-
 }

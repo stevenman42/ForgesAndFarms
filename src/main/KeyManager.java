@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 import main.entities.creatures.Player;
 import main.entities.creatures.Zombie;
+import main.states.GameState;
 
 public class KeyManager implements KeyListener{
 	
@@ -57,6 +58,7 @@ public class KeyManager implements KeyListener{
 		keys[e.getKeyCode()] = false;
 		Player.moved = false;
 		Zombie.setMoved(false);
+		GameState.setTurned(false);
 //		keyActive = false;
 		
 	}
