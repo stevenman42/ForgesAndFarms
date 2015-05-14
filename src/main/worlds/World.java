@@ -23,7 +23,7 @@ public class World {
 	public World(Game game, String path){
 		this.game = game;
 		//loadWorldFromFile(path);
-		tiles = createWorld(75,75);
+		tiles = createWorld(20,20);
 		entities = randomEntities(tiles.size(), tiles.get(0).size());
 		
 

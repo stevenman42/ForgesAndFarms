@@ -28,10 +28,12 @@ public abstract class Creature extends Entity{
 	}
 	
 	public void move(int deltaX, int deltaY){
-		x += deltaX;
-		y += deltaY;
-		tileX = (int) (x / Tile.TILE_WIDTH);
-		tileY = (int) (y / Tile.TILE_HEIGHT);
+		if (!world.getTile((int)((x + deltaX) / Tile.TILE_WIDTH), (int)((y + deltaY) / Tile.TILE_HEIGHT)).isSolid()){
+			x += deltaX;
+			y += deltaY;
+			tileX = (int) (x / Tile.TILE_WIDTH);
+			tileY = (int) (y / Tile.TILE_HEIGHT);
+		}
 	}
 	
 	public void move(float deltaX, float deltaY){
