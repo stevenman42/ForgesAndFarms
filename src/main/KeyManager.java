@@ -47,7 +47,11 @@ public class KeyManager implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		
-		keys[e.getKeyCode()] = true;
+		try{
+			keys[e.getKeyCode()] = true;
+		}catch (ArrayIndexOutOfBoundsException f){
+			System.out.println("You probably pressed that key on accident.  You fool.");
+		}
 		//keyActive = true;
 		
 	}
@@ -55,10 +59,15 @@ public class KeyManager implements KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		
-		keys[e.getKeyCode()] = false;
-		Player.moved = false;
-		Zombie.setMoved(false);
-		GameState.setTurned(false);
+		try{
+			keys[e.getKeyCode()] = false;
+			Player.moved = false;
+			Zombie.setMoved(false);
+			GameState.setTurned(false);
+		}catch (ArrayIndexOutOfBoundsException f){
+			// who cares
+		}
+
 //		keyActive = false;
 		
 	}

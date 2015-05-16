@@ -26,8 +26,6 @@ public class World {
 		//loadWorldFromFile(path);
 		tiles = createWorld(20,20);
 		entities = randomEntities(tiles.size(), tiles.get(0).size());
-		
-
 	}
 	
 	public void tick(){
@@ -169,9 +167,6 @@ public class World {
 		spawnX = Utils.parseInt(tokens[2]);
 		spawnY = Utils.parseInt(tokens[3]);
 		
-		//tiles = new int[width][height];
-
-
 		for (int y = 0; y < height; y ++){
 			for (int x = 0; x < width; x ++){
 				tiles.get(x).set(y, Utils.parseInt(tokens[(x + y * width) + 4]));
@@ -192,7 +187,6 @@ public class World {
 		for (int i = 0; i < worldHeight; i ++){
 			newWorld.add(row);
 		}
-		
 
 		for (int i = 0; i < height; i ++){
 			row = new ArrayList<Integer>();
@@ -207,21 +201,17 @@ public class World {
 	// this should be a pretty temporary thing
 	private List<List<Integer>> randomEntities(int height, int width){
 		List<List<Integer>> entities = new ArrayList<List<Integer>>();
-
-
+		
 		for (int i = 0; i < height; i ++){			
 			
 			List<Integer> row = new ArrayList<Integer>();
 			
 			for (int j = 0; j < width; j ++){
 				row.add((int)(Math.random() * 3));
-			}
-			
+			}	
 			entities.add(row);
 		}
-		
 		return entities;
-
 	}
 	
 	public static int getWidth(){

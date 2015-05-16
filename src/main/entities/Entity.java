@@ -117,5 +117,11 @@ public abstract class Entity {
 	public void setHeight(int height) {
 		this.height = height;
 	}
+	
+	// this method always returns false because that's the default
+	// if it needs to return anything else, then it should be overriden in a subclass
+	public boolean isSolid(){
+		return false;
+	}
 
 }

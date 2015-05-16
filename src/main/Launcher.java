@@ -11,8 +11,8 @@ public class Launcher {
 
 	
 	public static void main(String [] args){
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		Game game = new Game("Title", (int) screenSize.getWidth(), (int) screenSize.getHeight() - 100);
+		//Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		Game game = new Game("Title", 960, 720);
 		game.start();
 		
 	}
