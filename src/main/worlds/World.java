@@ -24,7 +24,7 @@ public class World {
 	public World(Game game, String path){
 		this.game = game;
 		//loadWorldFromFile(path);
-		tiles = createWorld(20,20);
+		tiles = createWorld(30,30);
 		entities = randomEntities(tiles.size(), tiles.get(0).size());
 	}
 	
@@ -125,10 +125,11 @@ public class World {
 			else
 				return e;
 		}catch(IndexOutOfBoundsException g){
-			System.out.println("World.java: getEntity() method");
+			// System.out.println("World.java: getEntity() method: tried to get an entity at (" + x + ", " + y + ")");
+			throw(g);
 		}
 	
-		return null;
+		//return null;
 		
 	}
 	
