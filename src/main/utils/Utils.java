@@ -25,6 +25,7 @@ public class Utils {
 		return builder.toString();
 	}
 	
+	// this is only used in the reading worlds from files class
 	public static int parseInt(String number){
 		try{
 			return Integer.parseInt(number);

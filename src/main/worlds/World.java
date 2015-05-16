@@ -6,6 +6,7 @@ import java.util.List;
 
 import main.Game;
 import main.entities.Entity;
+import main.entities.passives.NullEntity;
 import main.tiles.Tile;
 import main.utils.Utils;
 
@@ -115,12 +116,16 @@ public class World {
 		}
 	}
 	
-	public Entity getEntity(int x, int y){
+	public static Entity getEntity(int x, int y){
 		//Entity e = Entity.entities[entities[y][x]];
 		//entities = randomEntities(tiles.size(), tiles.get(0).size());
 		try{
-			Entity e = Entity.entities[this.entities.get(y).get(x)];
-			return e;
+			Entity e = Entity.entities[entities.get(y).get(x)];
+			if (e == null){
+				return new NullEntity(0);
+			}
+			else
+				return e;
 		}catch(IndexOutOfBoundsException g){
 			System.out.println("World.java: getEntity() method");
 		}

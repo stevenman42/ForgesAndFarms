@@ -3,10 +3,13 @@ package main.entities.passives;
 import graphics.Assets;
 
 import java.awt.Graphics;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 import main.Game;
 import main.inventory.Inventory;
+import main.tiles.Tile;
 import main.worlds.World;
 
 public class StoneFenceEntity extends PassiveEntity{
@@ -14,6 +17,19 @@ public class StoneFenceEntity extends PassiveEntity{
 
 
 	private BufferedImage texture;
+	
+
+
+	// Rotation information
+
+	double rotationRequired = Math.toRadians(90);
+	double locationX = Assets.stoneWall.getWidth() / 2;
+	double locationY = Assets.stoneWall.getHeight() / 2;
+	AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
+	AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+
+	// Drawing the rotated image at the required drawing locations
+	
 
 	/*
 	public FenceEntity(Game game, World world, float x, float y, int width, int height, BufferedImage texture) {
@@ -34,7 +50,22 @@ public class StoneFenceEntity extends PassiveEntity{
 		}
 		world.setEntity(x, y, 0);
 	}
-
+	
+	@Override
+	public void render(Graphics g, int x, int y){
+		
+		try{
+			if (World.getEntity((int)x / Tile.TILE_WIDTH, (int)y / Tile.TILE_HEIGHT - 1) != null && World.getEntity((int)x / Tile.TILE_WIDTH,(int) y / Tile.TILE_HEIGHT - 1).getId() == 2){
+				System.out.println("wat");
+				g.drawImage(op.filter(Assets.stoneWall, null), x, y, null);
+			}
+			else
+				if (id != 0)
+					g.drawImage(Assets.stoneWall, x, y, 16, 16, null);
+		}catch(NullPointerException e){
+			System.out.println(world);
+		}
+	}
 
 
 }
