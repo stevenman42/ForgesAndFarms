@@ -65,7 +65,7 @@ public class KeyManager implements KeyListener{
 			Zombie.setMoved(false);
 			GameState.setTurned(false);
 		}catch (ArrayIndexOutOfBoundsException f){
-			
+			// who cares
 		}
 
 //		keyActive = false;
