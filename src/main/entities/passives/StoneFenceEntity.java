@@ -57,10 +57,10 @@ public class StoneFenceEntity extends PassiveEntity{
 		
 		try{
 
-			if (x >= 1 && x < World.getWidth() * Tile.TILE_WIDTH - Tile.TILE_WIDTH && y >= 1 && y < World.getWidth() * Tile.TILE_HEIGHT - Tile.TILE_HEIGHT){
+			//if (x >= 1 && x < World.getWidth() * Tile.TILE_WIDTH - Tile.TILE_WIDTH && y >= 1 && y < World.getWidth() * Tile.TILE_HEIGHT - Tile.TILE_HEIGHT){
 				if (World.getEntity(x / Tile.TILE_WIDTH, y / Tile.TILE_HEIGHT - 1) != null && World.getEntity(x / Tile.TILE_WIDTH, y / Tile.TILE_HEIGHT - 1).getId() == 2
 						|| World.getEntity(x / Tile.TILE_WIDTH, y / Tile.TILE_HEIGHT + 1) != null && World.getEntity(x / Tile.TILE_WIDTH, y / Tile.TILE_HEIGHT + 1).getId() == 2){
-					System.out.println("I'm rotating the entity at (" + x / Tile.TILE_WIDTH + ", " + y / Tile.TILE_HEIGHT + ") " + "because the entity at (" + x / Tile.TILE_WIDTH + ", " + (y / Tile.TILE_HEIGHT + 1) + ") or (" + x / Tile.TILE_WIDTH + " ," + (y / Tile.TILE_HEIGHT - 1) + ") is a fence.");
+					//System.out.println("I'm rotating the entity at (" + x / Tile.TILE_WIDTH + ", " + y / Tile.TILE_HEIGHT + ") " + "because the entity at (" + x / Tile.TILE_WIDTH + ", " + (y / Tile.TILE_HEIGHT + 1) + ") or (" + x / Tile.TILE_WIDTH + ", " + (y / Tile.TILE_HEIGHT - 1) + ") is a fence.");
 					g.drawImage(op.filter(Assets.stoneWall, null), x, y, null);
 					//g.drawRoundRect(x, y, Tile.TILE_WIDTH, Tile.TILE_HEIGHT, 3, 3);
 					// test
@@ -69,7 +69,7 @@ public class StoneFenceEntity extends PassiveEntity{
 			else
 				if (id != 0);
 					
-			}
+			//}
 			if (!rendered){
 				g.drawImage(Assets.stoneWall, x, y, 16, 16, null);
 				rendered = true;

@@ -26,6 +26,7 @@ public class World {
 		//loadWorldFromFile(path);
 		tiles = createWorld(30,30);
 		entities = randomEntities(tiles.size(), tiles.get(0).size());
+		setEntity(10,10,2);
 	}
 	
 	public void tick(){
@@ -104,12 +105,12 @@ public class World {
 		
 		if (side.equals("right")){
 			for (int i = 0; i < tiles.size(); i++){
-				entities.get(i).add((int) (Math.random() * 2));
+				entities.get(i).add((int) (Math.random() * 0));
 			}
 		}
 		else{
 			for (int i = 0; i < tiles.size(); i ++){
-				entities.get(i).add(0, (int) (Math.random() * 2));
+				entities.get(i).add(0, (int) (Math.random() * 0));
 			}
 		}
 	}
@@ -192,7 +193,7 @@ public class World {
 		for (int i = 0; i < height; i ++){
 			row = new ArrayList<Integer>();
 			for (int j = 0; j < width; j ++){		
-				row.add((int) (Math.random() * 4));
+				row.add((int) (Math.random() * 1));
 			}
 			newWorld.set(i, row);
 		}
@@ -208,7 +209,8 @@ public class World {
 			List<Integer> row = new ArrayList<Integer>();
 			
 			for (int j = 0; j < width; j ++){
-				row.add((int)(Math.random() * 3));
+				//row.add((int)(Math.random() * 0));
+				row.add(2);
 			}	
 			entities.add(row);
 		}
