@@ -63,6 +63,7 @@ public class StoneFenceEntity extends PassiveEntity{
 					System.out.println("I'm rotating the entity at (" + x / Tile.TILE_WIDTH + ", " + y / Tile.TILE_HEIGHT + ") " + "because the entity at (" + x / Tile.TILE_WIDTH + ", " + (y / Tile.TILE_HEIGHT + 1) + ") or (" + x / Tile.TILE_WIDTH + " ," + (y / Tile.TILE_HEIGHT - 1) + ") is a fence.");
 					g.drawImage(op.filter(Assets.stoneWall, null), x, y, null);
 					//g.drawRoundRect(x, y, Tile.TILE_WIDTH, Tile.TILE_HEIGHT, 3, 3);
+					// test
 					rendered = true;
 				}
 			else
