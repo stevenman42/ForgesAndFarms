@@ -24,7 +24,7 @@ public class World {
 	public World(Game game, String path){
 		this.game = game;
 		//loadWorldFromFile(path);
-		tiles = createWorld(70,70);
+		tiles = createWorld(20,20);
 		setEntities(randomEntities(tiles.size(), tiles.get(0).size()));
 		setEntity(10,10,2);
 		setEntity(11,11,1);

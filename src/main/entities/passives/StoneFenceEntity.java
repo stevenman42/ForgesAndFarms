@@ -20,7 +20,7 @@ public class StoneFenceEntity extends PassiveEntity{
 	
 	int entityAbove = 0;
 	int entityBelow = 0;
-	int entity = 0;
+	int entity = 0, rightEntity = 0, leftEntity = 0;
 
 
 	// Rotation information
@@ -28,9 +28,15 @@ public class StoneFenceEntity extends PassiveEntity{
 	double rotationRequired = Math.toRadians(90);
 	double locationX = Assets.stoneWall.getWidth() / 2;
 	double locationY = Assets.stoneWall.getHeight() / 2;
-	AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
-	AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-
+	AffineTransform transform90 = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
+	AffineTransformOp op90 = new AffineTransformOp(transform90, AffineTransformOp.TYPE_BILINEAR);
+	
+	AffineTransform transformNeg90 = AffineTransform.getRotateInstance(Math.toRadians(-90), locationX, locationY);
+	AffineTransformOp opNeg90 = new AffineTransformOp(transformNeg90, AffineTransformOp.TYPE_BILINEAR);
+	
+	AffineTransform transform180 = AffineTransform.getRotateInstance(Math.toRadians(180), locationX, locationY);
+	AffineTransformOp op180 = new AffineTransformOp(transform180, AffineTransformOp.TYPE_BILINEAR);
+	
 	// Drawing the rotated image at the required drawing locations
 	
 
@@ -63,13 +69,28 @@ public class StoneFenceEntity extends PassiveEntity{
 			entityAbove = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT - 1).getId();
 			entityBelow = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT + 1).getId();
 			entity = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).getId();
+			leftEntity = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH - 1, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).getId();
+			rightEntity = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH + 1, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).getId();
 
 		}catch(IndexOutOfBoundsException e){
 			//System.out.println("StoneFenceEntity.java: ");
 		}
-		if ((entityAbove == entity || entityBelow == entity) && entity == 2){
-			g.drawImage(op.filter(Assets.stoneWall, null), x, y, null);
+		if (((entityAbove == entity || entityBelow == entity) && entity == 2) && leftEntity != entity && rightEntity != entity){
+			g.drawImage(op90.filter(Assets.stoneWall, null), x, y, null);
 		}
+		else if ((leftEntity == entity && entityBelow == entity) && entity == 2){
+			g.drawImage(Assets.cornerStoneWall, x, y, null);
+		}
+		else if ((rightEntity == entity && entityBelow == entity) && entity == 2){
+			g.drawImage(opNeg90.filter(Assets.cornerStoneWall, null), x, y, null);
+		}
+		else if ((leftEntity == entity && entityAbove == entity) && entity == 2){
+			g.drawImage(op90.filter(Assets.cornerStoneWall,null), x, y, null);
+		}
+		else if ((rightEntity == entity && entityAbove == entity) && entity == 2){
+			g.drawImage(op180.filter(Assets.cornerStoneWall, null), x, y, null);
+		}
+		
 		else
 			g.drawImage(Assets.stoneWall, x, y, 16, 16, null);
 		
