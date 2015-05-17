@@ -27,6 +27,7 @@ public class World {
 		tiles = createWorld(70,70);
 		setEntities(randomEntities(tiles.size(), tiles.get(0).size()));
 		setEntity(10,10,2);
+		setEntity(11,11,1);
 	}
 	
 	public void tick(){

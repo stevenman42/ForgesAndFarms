@@ -18,8 +18,6 @@ public class StoneFenceEntity extends PassiveEntity{
 
 	private BufferedImage texture;
 	
-	private boolean rendered;
-	
 	int entityAbove = 0;
 	int entityBelow = 0;
 	int entity = 0;
