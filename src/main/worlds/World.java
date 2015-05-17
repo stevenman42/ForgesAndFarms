@@ -24,8 +24,8 @@ public class World {
 	public World(Game game, String path){
 		this.game = game;
 		//loadWorldFromFile(path);
-		tiles = createWorld(30,30);
-		entities = randomEntities(tiles.size(), tiles.get(0).size());
+		tiles = createWorld(70,70);
+		setEntities(randomEntities(tiles.size(), tiles.get(0).size()));
 		setEntity(10,10,2);
 	}
 	
@@ -36,16 +36,16 @@ public class World {
 	public void render(Graphics g){
 	
 		
-		int xStart = (int) Math.max(0, game.getGameCamera().getxOffset() / Tile.TILE_WIDTH);
-		int xEnd = (int) Math.min(width, (game.getGameCamera().getxOffset() + game.getWidth()) / Tile.TILE_WIDTH + 1);
-		int yStart = (int) Math.max(0, game.getGameCamera().getyOffset() / Tile.TILE_HEIGHT);
-		int yEnd = (int) Math.min(height, (game.getGameCamera().getyOffset() + game.getHeight()) / Tile.TILE_HEIGHT + 1);
+		int xStart = (int) Math.max(0, Game.getGameCamera().getxOffset() / Tile.TILE_WIDTH);
+		int xEnd = (int) Math.min(width, (Game.getGameCamera().getxOffset() + game.getWidth()) / Tile.TILE_WIDTH + 1);
+		int yStart = (int) Math.max(0, Game.getGameCamera().getyOffset() / Tile.TILE_HEIGHT);
+		int yEnd = (int) Math.min(height, (Game.getGameCamera().getyOffset() + game.getHeight()) / Tile.TILE_HEIGHT + 1);
 		
 		for (int y = yStart; y < yEnd; y ++){
 			for (int x = xStart; x < xEnd; x ++){
-				getTile(x, y).render(g, (int) (x * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()), (int) (y * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
+				getTile(x, y).render(g, (int) (x * Tile.TILE_WIDTH - Game.getGameCamera().getxOffset()), (int) (y * Tile.TILE_HEIGHT - Game.getGameCamera().getyOffset()));
 				if (getEntity(x, y) != null && getEntity(x, y).getId() != 0){
-					getEntity(x, y).render(g, (int) (x * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()), (int) (y * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
+					getEntity(x, y).render(g, (int) (x * Tile.TILE_WIDTH - Game.getGameCamera().getxOffset()), (int) (y * Tile.TILE_HEIGHT - Game.getGameCamera().getyOffset()));
 				}
 			}
 		}
@@ -94,10 +94,10 @@ public class World {
 		}
 		
 		if (side.equals("top")){
-			entities.add(0, newRow);
+			getEntities().add(0, newRow);
 		}
 		else{
-			entities.add(newRow);
+			getEntities().add(newRow);
 		}
 	}
 
@@ -105,12 +105,12 @@ public class World {
 		
 		if (side.equals("right")){
 			for (int i = 0; i < tiles.size(); i++){
-				entities.get(i).add((int) (Math.random() * 0));
+				getEntities().get(i).add((int) (Math.random() * 0));
 			}
 		}
 		else{
 			for (int i = 0; i < tiles.size(); i ++){
-				entities.get(i).add(0, (int) (Math.random() * 0));
+				getEntities().get(i).add(0, (int) (Math.random() * 0));
 			}
 		}
 	}
@@ -119,7 +119,7 @@ public class World {
 		//Entity e = Entity.entities[entities[y][x]];
 		//entities = randomEntities(tiles.size(), tiles.get(0).size());
 		try{
-			Entity e = Entity.entities[entities.get(y).get(x)];
+			Entity e = Entity.entities[getEntities().get(y).get(x)];
 			if (e == null){
 				return new NullEntity(0);
 			}
@@ -157,7 +157,7 @@ public class World {
 	}
 	
 	public void setEntity(int x, int y, int id){
-		entities.get(y).set(x, id);
+		getEntities().get(y).set(x, id);
 	}
 	
 	private void loadWorldFromFile(String path){
@@ -177,8 +177,8 @@ public class World {
 	}
 	
 	private List<List<Integer>> createWorld(int worldWidth, int worldHeight){
-		this.width = worldWidth;
-		this.height = worldHeight;
+		World.width = worldWidth;
+		World.height = worldHeight;
 		List<List<Integer>> newWorld = new ArrayList<List<Integer>>();
 		
 		// Fills the world with 0s
@@ -210,7 +210,7 @@ public class World {
 			
 			for (int j = 0; j < width; j ++){
 				//row.add((int)(Math.random() * 0));
-				row.add(2);
+				row.add(0);
 			}	
 			entities.add(row);
 		}
@@ -223,6 +223,14 @@ public class World {
 	
 	public static int getHeight(){
 		return height;
+	}
+
+	public static List<List<Integer>> getEntities() {
+		return entities;
+	}
+
+	public static void setEntities(List<List<Integer>> entities) {
+		World.entities = entities;
 	}
 
 }

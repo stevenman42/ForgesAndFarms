@@ -19,6 +19,10 @@ public class StoneFenceEntity extends PassiveEntity{
 	private BufferedImage texture;
 	
 	private boolean rendered;
+	
+	int entityAbove = 0;
+	int entityBelow = 0;
+	int entity = 0;
 
 
 	// Rotation information
@@ -55,29 +59,23 @@ public class StoneFenceEntity extends PassiveEntity{
 	@Override
 	public void render(Graphics g, int x, int y){
 		
+		
 		try{
+			
+			entityAbove = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT - 1).getId();
+			entityBelow = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT + 1).getId();
+			entity = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).getId();
 
-			//if (x >= 1 && x < World.getWidth() * Tile.TILE_WIDTH - Tile.TILE_WIDTH && y >= 1 && y < World.getWidth() * Tile.TILE_HEIGHT - Tile.TILE_HEIGHT){
-				if (World.getEntity(x / Tile.TILE_WIDTH, y / Tile.TILE_HEIGHT - 1) != null && World.getEntity(x / Tile.TILE_WIDTH, y / Tile.TILE_HEIGHT - 1).getId() == 2
-						|| World.getEntity(x / Tile.TILE_WIDTH, y / Tile.TILE_HEIGHT + 1) != null && World.getEntity(x / Tile.TILE_WIDTH, y / Tile.TILE_HEIGHT + 1).getId() == 2){
-					//System.out.println("I'm rotating the entity at (" + x / Tile.TILE_WIDTH + ", " + y / Tile.TILE_HEIGHT + ") " + "because the entity at (" + x / Tile.TILE_WIDTH + ", " + (y / Tile.TILE_HEIGHT + 1) + ") or (" + x / Tile.TILE_WIDTH + ", " + (y / Tile.TILE_HEIGHT - 1) + ") is a fence.");
-					g.drawImage(op.filter(Assets.stoneWall, null), x, y, null);
-					//g.drawRoundRect(x, y, Tile.TILE_WIDTH, Tile.TILE_HEIGHT, 3, 3);
-					// test
-					rendered = true;
-				}
-			else
-				if (id != 0);
-					
-			//}
-			if (!rendered){
-				g.drawImage(Assets.stoneWall, x, y, 16, 16, null);
-				rendered = true;
-			}
-			rendered = false;
 		}catch(IndexOutOfBoundsException e){
-			System.out.println("StoneFenceEntity.java: ");
+			//System.out.println("StoneFenceEntity.java: ");
 		}
+		if ((entityAbove == entity || entityBelow == entity) && entity == 2){
+			g.drawImage(op.filter(Assets.stoneWall, null), x, y, null);
+		}
+		else
+			g.drawImage(Assets.stoneWall, x, y, 16, 16, null);
+		
+
 	}
 
 

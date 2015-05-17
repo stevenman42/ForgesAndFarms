@@ -31,7 +31,7 @@ public class Game implements Runnable{
 	private KeyManager keyManager;
 	
 	// Camera
-	private GameCamera gameCamera;
+	private static GameCamera gameCamera;
 	
 	
 	public Game(String title, int width, int height){
@@ -124,7 +124,7 @@ public class Game implements Runnable{
 		return keyManager;
 	}
 	
-	public GameCamera getGameCamera(){
+	public static GameCamera getGameCamera(){
 		return gameCamera;
 	}
 	
