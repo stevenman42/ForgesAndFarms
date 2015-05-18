@@ -35,8 +35,10 @@ public class HUD extends Entity{
 		for (int i = 0; i < 10; i ++){
 			try{
 				Tile stupid = (Tile) Inventory.getItem(i);
-				if (stupid != null)
-					stupid.render(g, x + 32 * i + 8, y + 8);
+				if (stupid != null){
+					g.drawImage(stupid.getTexture(), x + 32 * i + 8, y + 8, null);
+					//stupid.render(g, x + 32 * i + 8, y + 8);
+				}
 			}catch(ClassCastException e){
 				Entity notStupid = (Entity) Inventory.getItem(i);
 				if (notStupid != null)

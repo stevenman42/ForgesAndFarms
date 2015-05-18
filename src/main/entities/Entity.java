@@ -22,6 +22,7 @@ public abstract class Entity {
 	public static Entity woodWallEntity = new WoodFenceEntity(1);
 	public static Entity stoneWallEntity = new StoneFenceEntity(2);
 	public static Entity woodBoxEntity = new WoodBoxEntity(3);
+	public static Entity wireEntity = new WireEntity(5);
 	public static Entity nullEntity = new NullEntity(0);
 	
 	protected BufferedImage texture;
@@ -98,7 +99,6 @@ public abstract class Entity {
 		return World.getEntity((int)(x / Tile.TILE_WIDTH), (int) (y / Tile.TILE_HEIGHT));
 	}
 	
-	
 	public int getXPosition(){
 		return (int) (x / Tile.TILE_WIDTH);
 	}
@@ -110,8 +110,7 @@ public abstract class Entity {
 	public int getId(){
 		return id;
 	}
-
-
+	
 	public float getX() {
 		return x;
 	}

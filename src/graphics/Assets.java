@@ -9,6 +9,7 @@ public class Assets {
 	public static BufferedImage grass, dirt, stone, tilledDirt, // tiles
 								woodenBox,
 								woodWall, stoneWall, cornerWoodWall, cornerStoneWall, intersectionWoodWall, intersectionStoneWall, tIntersectionWoodWall, tIntersectionStoneWall,
+								wireDot, wireLine, wireIntersection, wireTIntersection, wireCorner, redWireDot, redWireLine, redWireIntersection, redWireTIntersection, redWireCorner,
 								player, zombie,
 								inventoryBar,
 								nullAsset;
@@ -34,6 +35,18 @@ public class Assets {
 		intersectionStoneWall = sheet.crop(80, 16, width, height);
 		tIntersectionWoodWall = sheet.crop(96, 16, width, height);
 		tIntersectionStoneWall = sheet.crop(112, 16, width, height);
+		wireDot = sheet.crop(144, 16, width, height);
+		wireLine = sheet.crop(112, 32, width, height);
+		wireIntersection = sheet.crop(96, 32, width, height);
+		wireTIntersection = sheet.crop(128, 32, width, height);
+		wireCorner = sheet.crop(144, 32, width, height);
+
+		redWireDot = sheet.crop(80, 32, width, height);
+		redWireLine = sheet.crop(64, 48, width, height);
+		redWireIntersection = sheet.crop(64, 32, width, height);
+		redWireTIntersection = sheet.crop(80, 48, width, height);
+		redWireCorner = sheet.crop(96, 64, width, height);
+		
 		
 		player = sheet.crop(0, 48, width, height);
 		zombie = sheet.crop(16, 48, width, height);

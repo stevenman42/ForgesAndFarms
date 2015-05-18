@@ -27,7 +27,6 @@ public class WoodBoxEntity extends Entity {
 
 	@Override
 	public boolean action(World world, int x, int y, int code) {
-		System.out.println("code: " + code);
 		
 		if (code == 1)
 			return move(x, y, 0, 1);

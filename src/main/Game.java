@@ -25,7 +25,7 @@ public class Game implements Runnable{
 	
 	//States
 	private State gameState;
-	private State menuState;
+	//private State menuState;
 
 	// Input
 	private KeyManager keyManager;
@@ -49,7 +49,7 @@ public class Game implements Runnable{
 		gameCamera = new GameCamera(this, 0, 0);
 		
 		gameState = new GameState(this);
-		menuState = new MenuState(this);
+		//menuState = new MenuState(this);
 		State.setState(gameState);
 
 	}

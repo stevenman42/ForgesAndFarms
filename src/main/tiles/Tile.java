@@ -25,12 +25,12 @@ public abstract class Tile {
 	
 	public static final int TILE_WIDTH = 16, TILE_HEIGHT = 16;
 	
-	protected BufferedImage texture;
+	private BufferedImage texture;
 	protected final int id;
 	
 	public Tile(BufferedImage texture, int id){
 		
-		this.texture = texture;
+		this.setTexture(texture);
 		this.id = id;
 		
 		tiles[id] = this;
@@ -78,7 +78,7 @@ public abstract class Tile {
 	
 	public void render(Graphics g, int x, int y){
 		
-		g.drawImage(texture, x, y, TILE_WIDTH, TILE_HEIGHT, null);
+		g.drawImage(getTexture(), x, y, TILE_WIDTH, TILE_HEIGHT, null);
 		
 	}
 	
@@ -88,6 +88,14 @@ public abstract class Tile {
 	
 	public int getId(){
 		return id;
+	}
+
+	public BufferedImage getTexture() {
+		return texture;
+	}
+
+	public void setTexture(BufferedImage texture) {
+		this.texture = texture;
 	}
 
 }

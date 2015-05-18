@@ -67,9 +67,7 @@ public class KeyManager implements KeyListener{
 		}catch (ArrayIndexOutOfBoundsException f){
 			// who cares
 		}
-
-//		keyActive = false;
-		
+//		keyActive = false;	
 	}
 
 	@Override
@@ -77,7 +75,4 @@ public class KeyManager implements KeyListener{
 		
 		
 	}
-	
-	
-
 }

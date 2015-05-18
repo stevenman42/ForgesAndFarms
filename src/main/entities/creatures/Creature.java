@@ -82,7 +82,7 @@ public abstract class Creature extends Entity{
 			}
 			else if (deltaY == 0){
 				System.out.println("it's 0");
-				if (World.getEntity((tileX / Tile.TILE_WIDTH), (int) tileY).getId() != 0)
+				if (World.getEntity((tileX / Tile.TILE_WIDTH), (int) tileY).getId() == 0)
 					World.getTile((int) (tileX + deltaX / Tile.TILE_WIDTH) , (int) tileY).action(world, (int) (tileX + deltaX / Tile.TILE_WIDTH), tileY);
 				else{
 					(World.getEntity(tileX + deltaX / Tile.TILE_WIDTH, tileY)).action(world, (tileX + deltaX / Tile.TILE_WIDTH), tileY, (deltaX / Math.abs(deltaX)) * 2);

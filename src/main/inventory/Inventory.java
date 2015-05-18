@@ -35,7 +35,6 @@ public class Inventory {
 				//System.out.println("you already have that in your inventory");
 				return false;
 			}
-			
 
 			else if (hotbar[i] == null){
 				hotbar[i] = newItem;
