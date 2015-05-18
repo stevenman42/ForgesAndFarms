@@ -17,13 +17,18 @@ public abstract class Entity {
 	protected int width, height;
 	protected Game game;
 	protected World world;
+	protected boolean active = false; // this is mostly just for wires, but I guess it could be used for other stuff too
 	
 	public static Entity[] entities = new Entity[256]; // this is the number of different types of tiles
+	public static Entity nullEntity = new NullEntity(0);
 	public static Entity woodWallEntity = new WoodFenceEntity(1);
 	public static Entity stoneWallEntity = new StoneFenceEntity(2);
 	public static Entity woodBoxEntity = new WoodBoxEntity(3);
 	public static Entity wireEntity = new WireEntity(5);
-	public static Entity nullEntity = new NullEntity(0);
+	public static Entity poweredWireEntity = new WireEntity(6);
+	public static Entity poweredEntity = new PoweredEntity(7);
+	
+
 	
 	protected BufferedImage texture;
 	protected final int id;
@@ -155,4 +160,14 @@ public abstract class Entity {
 
 
 	public abstract boolean action(World world, int x, int y, int code);
+
+
+	public boolean isActive() {
+		return active;
+	}
+
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 }
