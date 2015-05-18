@@ -18,8 +18,8 @@ public class StoneFenceEntity extends PassiveEntity{
 
 	private BufferedImage texture;
 	
-	int entityAbove = 0;
-	int entityBelow = 0;
+	int aboveEntity = 0;
+	int belowEntity = 0;
 	int entity = 0, rightEntity = 0, leftEntity = 0;
 
 
@@ -66,8 +66,8 @@ public class StoneFenceEntity extends PassiveEntity{
 		
 		try{
 			
-			entityAbove = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT - 1).getId();
-			entityBelow = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT + 1).getId();
+			aboveEntity = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT - 1).getId();
+			belowEntity = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT + 1).getId();
 			entity = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).getId();
 			leftEntity = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH - 1, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).getId();
 			rightEntity = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH + 1, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).getId();
@@ -75,25 +75,48 @@ public class StoneFenceEntity extends PassiveEntity{
 		}catch(IndexOutOfBoundsException e){
 			//System.out.println("StoneFenceEntity.java: ");
 		}
-		if (((entityAbove == entity || entityBelow == entity) && entity == 2) && leftEntity != entity && rightEntity != entity){
+		if (((aboveEntity == entity || belowEntity == entity) && entity == 2) && leftEntity != entity && rightEntity != entity){
 			g.drawImage(op90.filter(Assets.stoneWall, null), x, y, null);
 		}
-		else if ((leftEntity == entity && entityBelow == entity) && entity == 2){
+		else if ((rightEntity == entity && belowEntity == entity && leftEntity == entity && entity == 2)){
+			g.drawImage(Assets.tIntersectionStoneWall, x, y, null);
+		}
+		else if (rightEntity == entity && leftEntity == entity && aboveEntity == entity && entity == 2){
+			g.drawImage(op180.filter(Assets.tIntersectionStoneWall, null), x, y, null);
+		}
+		
+		else if (rightEntity == entity && aboveEntity == entity && belowEntity == entity && entity == 2){
+			g.drawImage(opNeg90.filter(Assets.tIntersectionStoneWall, null), x, y, null);
+		}
+		
+		else if (leftEntity == entity && aboveEntity == entity && belowEntity == entity && entity == 2){
+			g.drawImage(op90.filter(Assets.tIntersectionStoneWall, null), x, y, null);
+		}
+		
+		else if ((leftEntity == entity && belowEntity == entity) && entity == 2){
 			g.drawImage(Assets.cornerStoneWall, x, y, null);
 		}
-		else if ((rightEntity == entity && entityBelow == entity) && entity == 2){
+		else if ((rightEntity == entity && belowEntity == entity) && entity == 2){
 			g.drawImage(opNeg90.filter(Assets.cornerStoneWall, null), x, y, null);
 		}
-		else if ((leftEntity == entity && entityAbove == entity) && entity == 2){
+		else if ((leftEntity == entity && aboveEntity == entity) && entity == 2){
 			g.drawImage(op90.filter(Assets.cornerStoneWall,null), x, y, null);
 		}
-		else if ((rightEntity == entity && entityAbove == entity) && entity == 2){
+		else if ((rightEntity == entity && aboveEntity == entity) && entity == 2){
 			g.drawImage(op180.filter(Assets.cornerStoneWall, null), x, y, null);
 		}
+		
+
 		
 		else
 			g.drawImage(Assets.stoneWall, x, y, 16, 16, null);
 		
+		
+		if (aboveEntity == entity && leftEntity == entity && rightEntity == entity && belowEntity == entity && entity == 2){
+			g.drawImage(Assets.intersectionStoneWall, x, y, null);
+		}
+		
+
 
 	}
 
