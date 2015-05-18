@@ -26,7 +26,7 @@ public class Player extends Creature{
 		super(game, world, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, 0);
 		// the player has the Entity id of 0
 	
-		game.getGameCamera().centerOnEntity(this);
+		Game.getGameCamera().centerOnEntity(this);
 		centerY = y * Tile.TILE_HEIGHT;
 		centerX = x * Tile.TILE_WIDTH;
 	}
@@ -41,29 +41,26 @@ public class Player extends Creature{
 		getInput();
 		
 		if (x - centerX > (xWindowRange * Tile.TILE_WIDTH)){
-			game.getGameCamera().move(Tile.TILE_WIDTH, 0);
+			Game.getGameCamera().move(Tile.TILE_WIDTH, 0);
 			centerX += Tile.TILE_WIDTH;
 		}
 	
 		if (x - centerX < (-xWindowRange * Tile.TILE_WIDTH)){
-			game.getGameCamera().move(-Tile.TILE_WIDTH, 0);
+			Game.getGameCamera().move(-Tile.TILE_WIDTH, 0);
 			centerX -= Tile.TILE_WIDTH;
 		}
 		
 		if (y - centerY > (yWindowRange * Tile.TILE_HEIGHT)){
-			game.getGameCamera().move(0, Tile.TILE_HEIGHT);
+			Game.getGameCamera().move(0, Tile.TILE_HEIGHT);
 			centerY += Tile.TILE_HEIGHT;
 		}
 		
 		if (y - centerY < (-yWindowRange * Tile.TILE_HEIGHT)){
-			game.getGameCamera().move(0, -Tile.TILE_HEIGHT);
+			Game.getGameCamera().move(0, -Tile.TILE_HEIGHT);
 			centerY -= Tile.TILE_HEIGHT;
 		}
 	}
 	
-	public void action(World world, int x, int y){
-		
-	}
 	
 	
 	private void getInput(){
@@ -79,6 +76,7 @@ public class Player extends Creature{
 					moved = true;
 				}
 				else{
+					//System.out.println("going up");
 					move(0, -speed);
 					moved = true;
 				}
@@ -124,16 +122,9 @@ public class Player extends Creature{
 		
 		if (game.getKeyManager().space){
 			if (!moved){
-				
-
-				
-				//System.out.println(getCurrentEntity().getId());
 				if (getCurrentEntity().getId() != 0){
 					Inventory.changeItem(getCurrentEntity());
-					//System.out.println("changed your inventory");
 				}
-				//System.out.println(Inventory.getActiveItem());
-				
 				getCurrentTile().action(world, (int)(x / Tile.TILE_WIDTH), (int)(y / Tile.TILE_HEIGHT));
 				moved = true;
 				
@@ -196,10 +187,16 @@ public class Player extends Creature{
 
 	public void render(Graphics g) {
 		
-		g.drawImage(Assets.player, (int) (x - game.getGameCamera().getxOffset()), (int) (y - game.getGameCamera().getyOffset()), width, height, null);
+		g.drawImage(Assets.player, (int) (x - Game.getGameCamera().getxOffset()), (int) (y - Game.getGameCamera().getyOffset()), width, height, null);
 		
 	}
-	
+
+	@Override
+	public boolean action(World world, int x, int y, int code) {
+		return false;
+		
+	}
+
 	
 
 }

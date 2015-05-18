@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import main.entities.Entity;
 import main.inventory.Inventory;
 import main.tiles.Tile;
+import main.worlds.World;
 
 public class HUD extends Entity{
 
@@ -42,6 +43,14 @@ public class HUD extends Entity{
 					notStupid.render(g, x + 32 * i + 8, y + 8);
 			}
 		}
+	}
+
+
+
+	@Override
+	public boolean action(World world, int x, int y, int code) {
+		return false;
+		
 	}
 
 

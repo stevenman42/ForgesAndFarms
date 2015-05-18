@@ -28,6 +28,8 @@ public class World {
 		setEntities(randomEntities(tiles.size(), tiles.get(0).size()));
 		setEntity(10,10,2);
 		setEntity(11,11,1);
+		setEntity(13,13,3);
+		setEntity(15,15,3);
 	}
 	
 	public void tick(){
@@ -121,11 +123,16 @@ public class World {
 		//entities = randomEntities(tiles.size(), tiles.get(0).size());
 		try{
 			Entity e = Entity.entities[getEntities().get(y).get(x)];
+			//System.out.print(getEntities().get(y).get(x) + " ");
+			//System.out.println(Entity.entities[getEntities().get(y).get(x)].isSolid());
 			if (e == null){
 				return new NullEntity(0);
 			}
-			else
+			else{
+				//System.out.println("could not get an entity at x: " + x + " and y: " + y);
+				//System.out.println("I'm returning a null entity because you suck");
 				return e;
+			}
 		}catch(IndexOutOfBoundsException g){
 			// System.out.println("World.java: getEntity() method: tried to get an entity at (" + x + ", " + y + ")");
 			throw(g);
@@ -136,7 +143,7 @@ public class World {
 	}
 	
 	
-	public Tile getTile(int x, int y){		
+	public static Tile getTile(int x, int y){		
 		try{
 			Tile t = Tile.tiles[tiles.get(y).get(x)];
 
@@ -144,7 +151,7 @@ public class World {
 				return Tile.dirtTile;
 			return t;
 		}catch(ArrayIndexOutOfBoundsException e){
-			System.out.println("nope");
+			System.out.println("World.java: nope");
 			return Tile.dirtTile;
 		}
 	}
@@ -153,11 +160,11 @@ public class World {
 		try{
 			tiles.get(y).set(x, id);
 		}catch(IndexOutOfBoundsException e){
-			System.out.println("nope");
+			System.out.println("World.java: nope");
 		}
 	}
 	
-	public void setEntity(int x, int y, int id){
+	public static void setEntity(int x, int y, int id){
 		getEntities().get(y).set(x, id);
 	}
 	

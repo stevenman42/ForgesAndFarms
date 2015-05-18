@@ -26,7 +26,7 @@ public class GameState extends State{
 		
 		world = new World(game, "res/worlds/world1.txt");
 		player = new Player(game, world, World.getWidth() / 2, World.getHeight() / 2);
-		zombie = new Zombie(game, world, player, 16, 16, 16, 16, 3);
+		//zombie = new Zombie(game, world, player, 16, 16, 16, 16, 3);
 		invBar = new InventoryBar(Assets.inventoryBar, 4);
 
 	
@@ -45,7 +45,7 @@ public class GameState extends State{
 	public void turn(){
 		if (!turned){
 			// do turn stuff
-			zombie.tick();
+			//zombie.tick();
 			System.out.println("turn");
 			turned = true;
 		}
@@ -61,7 +61,7 @@ public class GameState extends State{
 		world.render(g);
 		player.render(g);
 		invBar.render(g, game.getWidth() / 2 - invBar.getWidth() / 2, game.getHeight() - invBar.getHeight(), 320, 32);
-		zombie.render(g);
+		//zombie.render(g);
 	
 	}
 }

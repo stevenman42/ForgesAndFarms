@@ -53,11 +53,13 @@ public class StoneFenceEntity extends PassiveEntity{
 		super(Assets.stoneWall, id);
 	}
 	
-	public void action(World world, int x, int y){
+	public boolean action(World world, int x, int y, int code){
 		if (Inventory.getActiveItem() == null){
 			System.out.println("main.entities.passives.StoneFenceEntity.java: ye");
+			return false;
 		}
-		world.setEntity(x, y, 0);
+		World.setEntity(x, y, 0);
+		return true;
 	}
 	
 	@Override
@@ -116,9 +118,8 @@ public class StoneFenceEntity extends PassiveEntity{
 			g.drawImage(Assets.intersectionStoneWall, x, y, null);
 		}
 		
-
-
 	}
+
 
 
 }

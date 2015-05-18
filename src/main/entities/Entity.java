@@ -21,6 +21,7 @@ public abstract class Entity {
 	public static Entity[] entities = new Entity[256]; // this is the number of different types of tiles
 	public static Entity woodWallEntity = new WoodFenceEntity(1);
 	public static Entity stoneWallEntity = new StoneFenceEntity(2);
+	public static Entity woodBoxEntity = new WoodBoxEntity(3);
 	public static Entity nullEntity = new NullEntity(0);
 	
 	protected BufferedImage texture;
@@ -59,17 +60,42 @@ public abstract class Entity {
 			g.drawImage(texture, x, y, width, height, null);
 	}
 	
+//	public void move(int deltaX, int deltaY){
+//		System.out.println("x: " + x + " y: " + y);
+//		if ((World.getTile((int)((x + deltaX) / Tile.TILE_WIDTH), (int)((y + deltaY) / Tile.TILE_HEIGHT)) != null) && !World.getTile((int)((x + deltaX) / Tile.TILE_WIDTH), (int)((y + deltaY) / Tile.TILE_HEIGHT)).isSolid() &&
+//				!World.getEntity((int)((x + deltaX) / Tile.TILE_WIDTH), (int)((y + deltaY) / Tile.TILE_HEIGHT)).isSolid()){
+//			x += deltaX;
+//			y += deltaY;
+//			tileX = (int) (x / Tile.TILE_WIDTH);
+//			tileY = (int) (y / Tile.TILE_HEIGHT);
+//		}
+//		else
+//			System.out.println("nope");
+//	}
+	
+	public boolean move(int x, int y, int deltaX, int deltaY){
+		//System.out.println("x: " + x + " y: " + y);
+		if (World.getEntity(x+ deltaX, y + deltaY).getId() == 0){
+			World.setEntity(x, y, 0);
+			World.setEntity(x + deltaX, y + deltaY, id);
+			return true;
+		}
+		
+		return false;
+	}
+	
+	
 	
 	// returns the tile that the entity is current on
 	// if, for some reason, the entity takes up more that one tile, I think it returns the one that the origin of the entity is on
 	public Tile getCurrentTile(){
 		//System.out.println("the tile at x position: " + x + " and y position: " + y + " is " + world.getTile((int) (x / Tile.TILE_WIDTH), (int) (y / Tile.TILE_HEIGHT)));
-		return world.getTile((int) (x / Tile.TILE_WIDTH), (int) (y / Tile.TILE_HEIGHT));
+		return World.getTile((int) (x / Tile.TILE_WIDTH), (int) (y / Tile.TILE_HEIGHT));
 	}
 	
 	public Entity getCurrentEntity(){
 		//System.out.println("the entity at x position: " + x + " and y position: " + y + "  is " + world.getEntity((int)(x / Tile.TILE_WIDTH), (int) (y / Tile.TILE_HEIGHT)));
-		return world.getEntity((int)(x / Tile.TILE_WIDTH), (int) (y / Tile.TILE_HEIGHT));
+		return World.getEntity((int)(x / Tile.TILE_WIDTH), (int) (y / Tile.TILE_HEIGHT));
 	}
 	
 	
@@ -123,5 +149,11 @@ public abstract class Entity {
 	public boolean isSolid(){
 		return false;
 	}
+	
+	public boolean isPushable(){
+		return false;
+	}
 
+
+	public abstract boolean action(World world, int x, int y, int code);
 }

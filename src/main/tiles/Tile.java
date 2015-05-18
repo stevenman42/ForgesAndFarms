@@ -41,14 +41,14 @@ public abstract class Tile {
 
 		// makes sure that there is an entity selected in the inventory, and that there isn't an entity on the ground
 		if (Inventory.getActiveItem() != null && Inventory.getActiveItem().getClass() != Entity.entities[0].getClass() &&
-				(world.getEntity(x, y).getClass() == Entity.entities[0].getClass() || world.getEntity(x, y) == null)){
+				(World.getEntity(x, y).getClass() == Entity.entities[0].getClass() || World.getEntity(x, y) == null)){
 			try{
-				world.setEntity(x, y, ((Entity) Inventory.getActiveItem()).getId());
+				World.setEntity(x, y, ((Entity) Inventory.getActiveItem()).getId());
 			}catch(ClassCastException e){
 				world.setTile(x, y, ((Tile) Inventory.getActiveItem()).getId());
 			}
 		}
-		else if(world.getEntity(x, y) == null || world.getEntity(x, y).getId() == 0){
+		else if(World.getEntity(x, y) == null || World.getEntity(x, y).getId() == 0){
 			// changes the tile if there isn't an entity on the tile
 			if (id == 0)
 				world.setTile(x, y, 1);
@@ -61,7 +61,8 @@ public abstract class Tile {
 		}
 
 		else{
-			((PassiveEntity) world.getEntity(x, y)).action(world, x, y);
+			((Entity) World.getEntity(x, y)).action(world, x, y, 1);
+			System.out.println("this is the thing that I'm calling");
 		}
 	}
 	public void placeTile(World world, int x, int y, int id){

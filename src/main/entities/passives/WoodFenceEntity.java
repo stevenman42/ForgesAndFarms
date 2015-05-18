@@ -51,12 +51,14 @@ public class WoodFenceEntity extends PassiveEntity{
 		super(Assets.woodWall, id);
 	}
 	
-	public void action(World world, int x, int y){
-		world.setEntity(x, y, 0);
+	public boolean action(World world, int x, int y, int code){
+		World.setEntity(x, y, 0);
+		return true;
 	}
 
 	@Override
 	public void render(Graphics g, int x, int y){
+		
 		
 		try{
 			
@@ -72,6 +74,21 @@ public class WoodFenceEntity extends PassiveEntity{
 		if (((aboveEntity == entity || belowEntity == entity) && entity == 1) && leftEntity != entity && rightEntity != entity){
 			g.drawImage(op90.filter(Assets.woodWall, null), x, y, null);
 		}
+		else if ((rightEntity == entity && belowEntity == entity && leftEntity == entity && entity == 1)){
+			g.drawImage(Assets.tIntersectionWoodWall, x, y, null);
+		}
+		else if (rightEntity == entity && leftEntity == entity && aboveEntity == entity && entity == 1){
+			g.drawImage(op180.filter(Assets.tIntersectionWoodWall, null), x, y, null);
+		}
+		
+		else if (rightEntity == entity && aboveEntity == entity && belowEntity == entity && entity == 1){
+			g.drawImage(opNeg90.filter(Assets.tIntersectionWoodWall, null), x, y, null);
+		}
+		
+		else if (leftEntity == entity && aboveEntity == entity && belowEntity == entity && entity == 1){
+			g.drawImage(op90.filter(Assets.tIntersectionWoodWall, null), x, y, null);
+		}
+		
 		else if ((leftEntity == entity && belowEntity == entity) && entity == 1){
 			g.drawImage(Assets.cornerWoodWall, x, y, null);
 		}
@@ -84,6 +101,9 @@ public class WoodFenceEntity extends PassiveEntity{
 		else if ((rightEntity == entity && aboveEntity == entity) && entity == 1){
 			g.drawImage(op180.filter(Assets.cornerWoodWall, null), x, y, null);
 		}
+		
+
+		
 		else
 			g.drawImage(Assets.woodWall, x, y, 16, 16, null);
 		
@@ -92,8 +112,6 @@ public class WoodFenceEntity extends PassiveEntity{
 			g.drawImage(Assets.intersectionWoodWall, x, y, null);
 		}
 		
-
-
 	}
 
 

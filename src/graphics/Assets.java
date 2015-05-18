@@ -7,6 +7,7 @@ public class Assets {
 	private static final int width = 16, height = 16;
 	
 	public static BufferedImage grass, dirt, stone, tilledDirt, // tiles
+								woodenBox,
 								woodWall, stoneWall, cornerWoodWall, cornerStoneWall, intersectionWoodWall, intersectionStoneWall, tIntersectionWoodWall, tIntersectionStoneWall,
 								player, zombie,
 								inventoryBar,
@@ -22,6 +23,8 @@ public class Assets {
 		dirt = sheet.crop(16, 0, width, height);
 		stone = sheet.crop(32, 0, width, height);
 		tilledDirt = sheet.crop(48, 0, width, height);
+		
+		woodenBox = sheet.crop(128, 16, width, height);
 		
 		woodWall = sheet.crop(0, 16, width, height);
 		stoneWall = sheet.crop(16, 16, width, height);

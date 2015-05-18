@@ -19,8 +19,11 @@ public class NullEntity extends PassiveEntity{
 		super(Assets.nullAsset, id);
 	}
 	
-	public void action(World world, int x, int y){
+	public boolean action(World world, int x, int y, int code){
+		return false;
 	}
+
+
 
 
 

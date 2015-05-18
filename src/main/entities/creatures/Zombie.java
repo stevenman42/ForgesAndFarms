@@ -54,4 +54,11 @@ public class Zombie extends Creature{
 	public void render(Graphics g){
 		g.drawImage(Assets.zombie, (int) (x - game.getGameCamera().getxOffset()), (int) (y - game.getGameCamera().getyOffset()), width, height, null);
 	}
+
+
+	@Override
+	public boolean action(World world, int x, int y, int code) {
+		return false;
+		
+	}
 }
