@@ -30,6 +30,7 @@ public class World {
 		setEntity(11,11,1);
 		setEntity(13,13,3);
 		setEntity(15,15,3);
+		setTile(3,3,3);
 	}
 	
 	public void tick(){

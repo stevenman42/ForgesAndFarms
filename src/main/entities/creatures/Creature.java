@@ -68,12 +68,13 @@ public abstract class Creature extends Entity{
 		}
 		
 		// if it's solid and not pushable
-		else if ((World.getEntity((int)((x + deltaX) / Tile.TILE_WIDTH), (int)((y + deltaY) / Tile.TILE_HEIGHT)).isSolid())){
+		else if ((World.getTile((int)((x + deltaX) / Tile.TILE_WIDTH), (int)((y + deltaY) / Tile.TILE_HEIGHT)).isSolid()) || (World.getEntity((int)((x + deltaX) / Tile.TILE_WIDTH), (int)((y + deltaY) / Tile.TILE_HEIGHT)).isSolid())){
 			tileX = (int) (x / Tile.TILE_WIDTH);
 			tileY = (int) (y / Tile.TILE_HEIGHT);
 			if (deltaX == 0){
-				if (World.getEntity(tileX, (int) (tileY + (deltaY / Tile.TILE_HEIGHT))).getId() == 0)
+				if (World.getEntity(tileX, (int) (tileY + (deltaY / Tile.TILE_HEIGHT))).getId() == 0){
 					World.getTile(tileX, (int) (tileY + (deltaY / Tile.TILE_HEIGHT))).action(world, tileX, (int)(tileY + deltaY / Tile.TILE_HEIGHT) );
+				}
 				else{
 					(World.getEntity(tileX, (int) (tileY + (deltaY / Tile.TILE_HEIGHT)))).action(world, tileX, (int) (tileY + (deltaY / Tile.TILE_HEIGHT)), deltaY / Math.abs(deltaY));
 				}

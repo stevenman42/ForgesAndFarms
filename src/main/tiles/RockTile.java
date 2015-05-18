@@ -18,9 +18,9 @@ public class RockTile extends Tile{
 	}
 	
 	public void action(World world, int x, int y){
-		
+		System.out.println("rockTile.java");
 		if (health == 0){
-			world.setEntity(x, y, 0);
+			World.setEntity(x, y, 0);
 			world.setTile(x, y, 1);
 			Inventory.changeItem(new RockTile(3));
 			health = 5;
