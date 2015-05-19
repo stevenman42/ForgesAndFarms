@@ -74,9 +74,11 @@ public class StoneFenceEntity extends PassiveEntity{
 			leftEntity = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH - 1, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).getId();
 			rightEntity = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH + 1, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).getId();
 
+			
 		}catch(IndexOutOfBoundsException e){
 			//System.out.println("StoneFenceEntity.java: ");
 		}
+		
 		if (((aboveEntity == entity || belowEntity == entity) && entity == 2) && leftEntity != entity && rightEntity != entity){
 			g.drawImage(op90.filter(Assets.stoneWall, null), x, y, null);
 		}

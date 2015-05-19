@@ -62,7 +62,7 @@ public abstract class Tile {
 
 		else{
 			((Entity) World.getEntity(x, y)).action(world, x, y, 1);
-			System.out.println("this is the thing that I'm calling");
+			System.out.println("Called the entity action method from the Tile class with the x: " + x + " and the y: " + y);
 		}
 	}
 	public void placeTile(World world, int x, int y, int id){

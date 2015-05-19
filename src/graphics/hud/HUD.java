@@ -42,7 +42,7 @@ public class HUD extends Entity{
 			}catch(ClassCastException e){
 				Entity notStupid = (Entity) Inventory.getItem(i);
 				if (notStupid != null)
-					notStupid.render(g, x + 32 * i + 8, y + 8);
+					g.drawImage(notStupid.getTexture(), x + 32 * i + 8, y + 8, null);
 			}
 		}
 	}
