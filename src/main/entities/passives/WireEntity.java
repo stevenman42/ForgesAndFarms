@@ -95,7 +95,8 @@ public class WireEntity extends PassiveEntity{
 		try{
 			red = (World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT - 1).isActive())
 					|| (World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT + 1).isActive())
-					|| (World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH + 1, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).isActive())
+					|| (World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH + 1, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).isActive() &&
+							World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH + 1, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).getId() != 9)
 					|| (World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH - 1, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).isActive());
 		}catch(IndexOutOfBoundsException e){
 			red = true;
