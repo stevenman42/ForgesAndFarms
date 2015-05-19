@@ -7,10 +7,12 @@ import main.entities.Entity;
 import main.inventory.Inventory;
 import main.worlds.World;
 
-public class PoweredEntity extends PassiveEntity{
+public class NotPoweredEntity extends PassiveEntity{
 	
-	public PoweredEntity(int id) {
-		super(Assets.poweredEntity, id);
+	private boolean active;
+
+	public NotPoweredEntity(int id) {
+		super(Assets.notPoweredEntity, id);
 	}
 
 	@Override
@@ -22,7 +24,7 @@ public class PoweredEntity extends PassiveEntity{
 			return false;
 		}
 		else if (Inventory.getActiveItem().getClass() == Entity.entities[7].getClass()){
-			World.setEntity(x, y, 8);
+			World.setEntity(x, y, 7);
 			WireEntity.unpowerWire(x, y);
 
 			return true;
@@ -30,9 +32,8 @@ public class PoweredEntity extends PassiveEntity{
 		return false;
 	}
 	
-	
 	public boolean isActive(){
-		return true;
+		return false;
 	}
 
 }

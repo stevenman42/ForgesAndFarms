@@ -27,6 +27,7 @@ public abstract class Entity {
 	public static Entity wireEntity = new WireEntity(5);
 	public static Entity poweredWireEntity = new WireEntity(6);
 	public static Entity poweredEntity = new PoweredEntity(7);
+	public static Entity notPoweredEntity = new NotPoweredEntity(8);
 	
 
 	

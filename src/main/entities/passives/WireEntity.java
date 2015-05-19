@@ -37,6 +37,28 @@ public class WireEntity extends PassiveEntity{
 		super(Assets.wireDot, id);
 		System.out.println("WireEntity constructor");
 	}
+	
+	public static void unpowerWire(int x, int y){
+		if (World.getEntity(x, y).getId() == 6)
+			World.setEntity(x, y, 5);
+		if (World.getEntity(x + 1, y).getId() == 6){
+			World.setEntity(x + 1, y, 5);
+			unpowerWire(x + 1, y);
+		}
+		if (World.getEntity(x - 1, y).getId() == 6){
+			World.setEntity(x - 1, y, 5);
+			unpowerWire(x - 1, y);
+		}
+		if (World.getEntity(x, y + 1).getId() == 6){
+			World.setEntity(x, y + 1, 5);
+			unpowerWire(x, y + 1);
+		}
+		if (World.getEntity(x, y - 1).getId() == 6){
+			World.setEntity(x, y - 1, 5);
+			unpowerWire(x, y - 1);
+		}
+		
+	}
 
 	@Override
 	public boolean action(World world, int x, int y, int code) {
@@ -55,6 +77,10 @@ public class WireEntity extends PassiveEntity{
 	public void render(Graphics g, int x, int y){
 		
 		boolean red = false;
+		
+		
+		
+		//System.out.println(poweredBlockIsInChain((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT));
 		
 		//System.out.println("WireEntity render method");
 		try{
@@ -115,7 +141,7 @@ public class WireEntity extends PassiveEntity{
 		else if (leftWire == wire && aboveWire == wire && belowWire == wire && (wire == 5 || wire == 6)){
 			g.drawImage(op90.filter(wireTIntersection, null), x, y, null);
 		}
-		
+
 		else if ((leftWire == wire && belowWire == wire) && (wire == 5 || wire == 6)){
 			g.drawImage(wireCorner, x, y, null);
 		}
@@ -128,11 +154,14 @@ public class WireEntity extends PassiveEntity{
 		else if ((rightWire == wire && aboveWire == wire) && (wire == 5 || wire == 6)){
 			g.drawImage(op180.filter(wireCorner, null), x, y, null);
 		}
+		else if((rightWire == wire || leftWire == wire) && (wire == 5 || wire == 6)){
+			g.drawImage(wireLine, x, y, null);
+		}
 		
 
 		
 		else
-			g.drawImage(wireLine, x, y, 16, 16, null);
+			g.drawImage(wireDot, x, y, 16, 16, null);
 		
 		
 		if (aboveWire == wire && leftWire == wire && rightWire == wire && belowWire == wire && (wire == 5 || wire == 6)){
