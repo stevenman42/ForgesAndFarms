@@ -18,13 +18,13 @@ public class PoweredEntity extends PassiveEntity{
 		if (Inventory.getActiveItem() == null || Inventory.getActiveItem().getClass() == Entity.entities[0].getClass()){
 			World.setEntity(x, y, 0);
 			WireEntity.unpowerWire(x, y);
-			
+			WireEntity.updateWire();
 			return false;
 		}
 		else if (Inventory.getActiveItem().getClass() == Entity.entities[7].getClass()){
 			World.setEntity(x, y, 8);
 			WireEntity.unpowerWire(x, y);
-
+			WireEntity.updateWire();
 			return true;
 		}
 		return false;

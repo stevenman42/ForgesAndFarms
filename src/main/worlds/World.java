@@ -7,6 +7,7 @@ import java.util.List;
 import main.Game;
 import main.entities.Entity;
 import main.entities.passives.NullEntity;
+import main.entities.passives.WireEntity;
 import main.tiles.Tile;
 import main.utils.Utils;
 
@@ -36,7 +37,7 @@ public class World {
 	}
 	
 	public void tick(){
-		
+		//WireEntity.updateWire();
 	}
 	
 	public void render(Graphics g){

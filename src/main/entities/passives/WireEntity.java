@@ -21,10 +21,10 @@ public class WireEntity extends PassiveEntity{
 	
 	// Rotation information
 
-	double rotationRequired = Math.toRadians(90);
+	//double rotationRequired = Math.toRadians(90);
 	double locationX = Assets.wireLine.getWidth() / 2;
 	double locationY = Assets.wireLine.getHeight() / 2;
-	AffineTransform transform90 = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
+	AffineTransform transform90 = AffineTransform.getRotateInstance(Math.toRadians(90), locationX, locationY);
 	AffineTransformOp op90 = new AffineTransformOp(transform90, AffineTransformOp.TYPE_BILINEAR);
 	
 	AffineTransform transformNeg90 = AffineTransform.getRotateInstance(Math.toRadians(-90), locationX, locationY);
@@ -36,6 +36,14 @@ public class WireEntity extends PassiveEntity{
 	public WireEntity(int id) {
 		super(Assets.wireDot, id);
 		System.out.println("WireEntity constructor");
+	}
+	
+	public static void updateWire(){
+		for (int i = 1; i < World.getWidth() - 1; i ++){
+			for (int j = 1; j < World.getHeight() - 1; j ++){
+				unpowerWire(i, j);
+			}
+		}
 	}
 	
 	public static void unpowerWire(int x, int y){
@@ -63,6 +71,7 @@ public class WireEntity extends PassiveEntity{
 	@Override
 	public boolean action(World world, int x, int y, int code) {
 		World.setEntity(x, y, 0);
+		updateWire();
 		return false;
 	}
 	
@@ -78,7 +87,7 @@ public class WireEntity extends PassiveEntity{
 		
 		boolean red = false;
 		
-		
+		//updateWire();
 		
 		//System.out.println(poweredBlockIsInChain((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT));
 		
@@ -89,7 +98,7 @@ public class WireEntity extends PassiveEntity{
 					|| (World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH + 1, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).isActive())
 					|| (World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH - 1, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).isActive());
 		}catch(IndexOutOfBoundsException e){
-			red = false;
+			red = true;
 		}
 		if (red){
 			wireLine = Assets.redWireLine;
@@ -123,7 +132,19 @@ public class WireEntity extends PassiveEntity{
 		}catch(IndexOutOfBoundsException e){
 			System.out.println("StoneFenceEntity.java: ");
 		}
-		
+		try{
+			
+			aboveWire = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT - 1).getId();
+			belowWire = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT + 1).getId();
+			wire = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).getId();
+			leftWire = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH - 1, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).getId();
+			rightWire = World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH + 1, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).getId();
+
+			
+		}catch(IndexOutOfBoundsException e){
+			//System.out.println("StoneFenceEntity.java: ");
+		}
+		//System.out.println("mi");
 		if (((aboveWire == wire || belowWire == wire) && (wire == 5 || wire == 6)) && leftWire != wire && rightWire != wire){
 			g.drawImage(op90.filter(wireLine, null), x, y, null);
 		}
@@ -141,7 +162,7 @@ public class WireEntity extends PassiveEntity{
 		else if (leftWire == wire && aboveWire == wire && belowWire == wire && (wire == 5 || wire == 6)){
 			g.drawImage(op90.filter(wireTIntersection, null), x, y, null);
 		}
-
+		
 		else if ((leftWire == wire && belowWire == wire) && (wire == 5 || wire == 6)){
 			g.drawImage(wireCorner, x, y, null);
 		}
@@ -154,20 +175,16 @@ public class WireEntity extends PassiveEntity{
 		else if ((rightWire == wire && aboveWire == wire) && (wire == 5 || wire == 6)){
 			g.drawImage(op180.filter(wireCorner, null), x, y, null);
 		}
-		else if((rightWire == wire || leftWire == wire) && (wire == 5 || wire == 6)){
-			g.drawImage(wireLine, x, y, null);
-		}
 		
 
 		
 		else
-			g.drawImage(wireDot, x, y, 16, 16, null);
+			g.drawImage(wireLine, x, y, 16, 16, null);
 		
 		
 		if (aboveWire == wire && leftWire == wire && rightWire == wire && belowWire == wire && (wire == 5 || wire == 6)){
 			g.drawImage(wireIntersection, x, y, null);
 		}
-		
 	}
 
 }
