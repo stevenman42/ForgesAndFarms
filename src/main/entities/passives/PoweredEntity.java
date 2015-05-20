@@ -3,8 +3,10 @@ package main.entities.passives;
 import java.awt.Graphics;
 
 import graphics.Assets;
+import main.Game;
 import main.entities.Entity;
 import main.inventory.Inventory;
+import main.tiles.Tile;
 import main.worlds.World;
 
 public class PoweredEntity extends PassiveEntity{
@@ -30,6 +32,7 @@ public class PoweredEntity extends PassiveEntity{
 		return false;
 	}
 	
+
 	
 	public boolean isActive(){
 		return true;

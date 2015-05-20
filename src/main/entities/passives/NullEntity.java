@@ -24,7 +24,9 @@ public class NullEntity extends PassiveEntity{
 	}
 
 
-
+	public boolean isActive(){
+		return false;
+	}
 
 
 }

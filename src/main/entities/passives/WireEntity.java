@@ -42,44 +42,59 @@ public class WireEntity extends PassiveEntity{
 		for (int i = 1; i < World.getWidth() - 1; i ++){
 			for (int j = 1; j < World.getHeight() - 1; j ++){
 				unpowerWire(i, j);
+
 			}
 		}
 	}
 	
 	public static void unpowerWire(int x, int y){
-		if (World.getEntity(x, y).getId() == 6)
+		if (World.getEntity(x, y).getId() == 6){
 			World.setEntity(x, y, 5);
-		if (World.getEntity(x + 1, y).getId() == 6){
-			World.setEntity(x + 1, y, 5);
-			unpowerWire(x + 1, y);
+			//System.out.println(World.getEntity(x + 1, y).getId());
+			
+			if (World.getEntity(x + 1, y).getId() == 9){
+				
+				System.out.println("tru");
+				World.setEntity(x + 1, y, 10);
+				World.setEntity(x, y, 5);
+			}
+
 		}
-		if (World.getEntity(x - 1, y).getId() == 6){
-			World.setEntity(x - 1, y, 5);
-			unpowerWire(x - 1, y);
-		}
-		if (World.getEntity(x, y + 1).getId() == 6){
-			World.setEntity(x, y + 1, 5);
-			unpowerWire(x, y + 1);
-		}
-		if (World.getEntity(x, y - 1).getId() == 6){
-			World.setEntity(x, y - 1, 5);
-			unpowerWire(x, y - 1);
-		}
+//		if ((World.getEntity(x + 1, y).getId() == 6) && World.getEntity(x + 2, y).getId() != 10){
+//			World.setEntity(x + 1, y, 5);
+//			//unpowerWire(x + 1, y);
+//		}
+//		if ((World.getEntity(x - 1, y).getId() == 6) && World.getEntity(x, y).getId() != 10){
+//			World.setEntity(x - 1, y, 5);
+//			//unpowerWire(x - 1, y);
+//		}
+//		if ((World.getEntity(x, y + 1).getId() == 6) && World.getEntity(x + 1, y + 1).getId() != 10){
+//			World.setEntity(x, y + 1, 5);
+//			//unpowerWire(x, y + 1);
+//		}
+//		if ((World.getEntity(x, y - 1).getId() == 6) && World.getEntity(x + 1, y - 1).getId() != 10){
+//			World.setEntity(x, y - 1, 5);
+//			//unpowerWire(x, y - 1);
+//		}
 		
 	}
 
 	@Override
 	public boolean action(World world, int x, int y, int code) {
 		World.setEntity(x, y, 0);
+		InverterEntity.toggled = false;
+		//PoweredInverterEntity.update();
 		updateWire();
 		return false;
 	}
 	
 	public boolean isActive(){
-		if (id == 6)
+		if (id == 6){
 			return true;
-		else
+		}
+		else{
 			return false;
+		}
 	}
 	
 	@Override
@@ -87,11 +102,8 @@ public class WireEntity extends PassiveEntity{
 		
 		boolean red = false;
 		
-		//updateWire();
-		
-		//System.out.println(poweredBlockIsInChain((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT));
-		
-		//System.out.println("WireEntity render method");
+
+
 		try{
 			red = (World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT - 1).isActive())
 					|| (World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT + 1).isActive())

@@ -9,7 +9,7 @@ public class Assets {
 	public static BufferedImage grass, dirt, stone, tilledDirt, // tiles
 								woodenBox,
 								woodWall, stoneWall, cornerWoodWall, cornerStoneWall, intersectionWoodWall, intersectionStoneWall, tIntersectionWoodWall, tIntersectionStoneWall,
-								wireDot, wireLine, wireIntersection, wireTIntersection, wireCorner, redWireDot, redWireLine, redWireIntersection, redWireTIntersection, redWireCorner, poweredEntity, notPoweredEntity, inverter,
+								wireDot, wireLine, wireIntersection, wireTIntersection, wireCorner, redWireDot, redWireLine, redWireIntersection, redWireTIntersection, redWireCorner, poweredEntity, notPoweredEntity, poweredInverter, unpoweredInverter,
 								player, zombie,
 								inventoryBar,
 								nullAsset;
@@ -50,7 +50,8 @@ public class Assets {
 		
 		poweredEntity = sheet.crop(48, 48, width, height);
 		notPoweredEntity = sheet.crop(32, 48, width, height);
-		inverter = sheet.crop(112, 48, width, height);
+		poweredInverter = sheet.crop(112, 48, width, height);
+		unpoweredInverter = sheet.crop(128, 48, width, height);
 		
 		
 		player = sheet.crop(0, 48, width, height);

@@ -6,6 +6,7 @@ import graphics.hud.InventoryBar;
 import java.awt.Graphics;
 
 import main.Game;
+import main.entities.passives.WireEntity;
 //import main.KeyManager;
 //import main.entities.Entity;
 //import main.entities.passives.NullEntity;
@@ -126,6 +127,11 @@ public class Player extends Creature{
 					Inventory.changeItem(getCurrentEntity());
 				}
 				getCurrentTile().action(world, (int)(x / Tile.TILE_WIDTH), (int)(y / Tile.TILE_HEIGHT));
+				
+				// YES I KNOW THIS IS A TERRIBLE WAY TO DO IT ARGH
+				if(getCurrentEntity().getId() == 5 || getCurrentEntity().getId() == 6)
+					WireEntity.updateWire();
+				
 				moved = true;
 				
 				// this prints the contents of the inventory

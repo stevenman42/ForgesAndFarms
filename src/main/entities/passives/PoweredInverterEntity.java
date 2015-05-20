@@ -8,9 +8,11 @@ import main.tiles.Tile;
 import main.worlds.World;
 
 public class PoweredInverterEntity extends PassiveEntity{
+	
+	private static boolean toggled;
 
 	public PoweredInverterEntity(int id) {
-		super(Assets.inverter, id);
+		super(Assets.poweredInverter, id);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -27,14 +29,30 @@ public class PoweredInverterEntity extends PassiveEntity{
 		return false;
 	}
 	
+
+	
 	public void render(Graphics g, int x, int y){
-		if (!(World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH - 1, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).isActive())){
-			World.setEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT, 9);
-			WireEntity.updateWire();
-			System.out.println("agh");
+		
+
+		if ((World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH - 1, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).isActive())){
+			//World.setEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT, 10);
+			//WireEntity.updateWire();
 		}
-		g.drawImage(Assets.inverter, x, y, null);
+		else{
+			
+			
+			World.setEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT, 9);
+			//World.setEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH - 1, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT, 6);
+			//WireEntity.updateWire();
+			//System.out.println("hur");
+		}
+		//System.out.println((World.getEntity((int)(x + Game.getGameCamera().getxOffset()) / Tile.TILE_WIDTH - 1, (int)(y + Game.getGameCamera().getyOffset()) / Tile.TILE_HEIGHT).isActive()));
+		
+		g.drawImage(Assets.poweredInverter, x, y, null);
 	}
 
+	public static void setToggled(boolean newT){
+		toggled = newT;
+	}
 	
 }
